@@ -1875,20 +1875,57 @@
   }
   .cart-overlay.open { opacity: 1; pointer-events: all; }
 
-  /* ── MOBILE ── */
+  /* ── NAV OVERLAY ── */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 13, 8, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .nav-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Mobile navigation elements hidden by default on desktop */
+  .mobile-only-nav-item {
+    display: none;
+  }
+
+  /* ── MOBILE HAMBURGER ── */
   .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    padding: 4px;
+    padding: 8px;
+    z-index: 2002;
+    position: relative;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+  .hamburger:hover {
+    background: rgba(200, 165, 91, 0.08);
   }
   .hamburger span {
-    width: 24px;
+    width: 20px;
     height: 1px;
     background: var(--sand);
     display: block;
-    transition: all 0.3s;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 
   @media (max-width: 1024px) {
@@ -1903,11 +1940,148 @@
     .insta-grid { grid-template-columns: repeat(4, 1fr); }
     .insta-item:nth-child(1) { grid-column: 1 / 3; }
     .insta-item:nth-child(5) { grid-column: 3 / 5; }
+
+    /* Touch fallback: make quick-add & wishlist visible on tablets */
+    .quick-add {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      background: rgba(10,10,10,0.6);
+      border-color: var(--ivory);
+    }
+    [data-theme="light"] .quick-add {
+      background: rgba(253, 246, 240, 0.85);
+      border-color: #1C0F08;
+      color: #1C0F08;
+    }
+    .product-overlay {
+      background: rgba(10,10,10,0.25) !important;
+    }
+    .product-wish {
+      opacity: 1 !important;
+    }
   }
 
   @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
+    /* Mobile Navigation Drawer Conversion */
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 310px;
+      height: 100vh;
+      background: rgba(6, 13, 8, 0.98);
+      backdrop-filter: blur(25px);
+      z-index: 1995;
+      padding: 7.5rem 2.2rem 3rem 2.2rem;
+      gap: 1.8rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-left: 1px solid rgba(200, 165, 91, 0.12);
+      overflow-y: auto;
+    }
+    .nav-links.open {
+      transform: translateX(0);
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+    }
+    
+    /* Show mobile-only nav elements in drawer */
+    .mobile-only-nav-item {
+      display: block;
+    }
+    .nav-links .divider-li {
+      height: 1px;
+      background: rgba(200, 165, 91, 0.12);
+      margin: 0.6rem 0;
+      width: 100%;
+    }
+    .mobile-search-bar {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(200, 165, 91, 0.25);
+      border-radius: 24px;
+      padding: 0.55rem 0.9rem;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .mobile-search-bar svg {
+      width: 15px;
+      height: 15px;
+      color: var(--sand);
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .mobile-search-bar input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ivory);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 300;
+      width: 100%;
+    }
+    .mobile-search-bar input::placeholder {
+      color: var(--sand);
+      opacity: 0.45;
+    }
+    .mobile-wishlist-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-decoration: none;
+    }
+    .mobile-wishlist-link svg {
+      width: 16px;
+      height: 16px;
+      color: var(--sand);
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .mobile-lang-switch {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    /* Declutter Navbar Actions */
+    .nav-actions {
+      gap: 1.1rem;
+    }
+    .nav-icon-search, .nav-icon-wishlist, .nav-lang {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
+
+    /* Simplified Theme Toggle on Mobile */
+    #theme-toggle {
+      padding: 0.35rem 0.4rem;
+      border-radius: 20px;
+      border-color: rgba(200, 165, 91, 0.25);
+    }
+    #theme-label {
+      display: none;
+    }
+    #theme-toggle .t-icon {
+      font-size: 0.8rem;
+    }
+
+    /* Layout Tweaks */
     .hero-title { font-size: clamp(2.4rem, 9vw, 4rem); }
     .heritage-grid { grid-template-columns: 1fr; }
     .heritage-image { max-height: 50vh; }
@@ -1931,6 +2105,77 @@
     #cart-drawer { width: 100%; }
     .gifts-grid { grid-template-columns: 1fr; }
     section { padding: 5rem 5vw; }
+
+    /* Touch fallback: make quick-add & wishlist visible on mobile */
+    .quick-add {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      background: rgba(10,10,10,0.6);
+      border-color: var(--ivory);
+    }
+    [data-theme="light"] .quick-add {
+      background: rgba(253, 246, 240, 0.85);
+      border-color: #1C0F08;
+      color: #1C0F08;
+    }
+    .product-overlay {
+      background: rgba(10,10,10,0.25) !important;
+    }
+    .product-wish {
+      opacity: 1 !important;
+    }
+
+    /* Hero elements overlap resolution on small viewports */
+    .bottle-silhouette {
+      right: 7%;
+      bottom: 24%;
+      transform: scale(0.75);
+      opacity: 0.55;
+    }
+    .smoke-container {
+      right: 8%;
+      bottom: 26%;
+      transform: scale(0.75);
+      opacity: 0.5;
+    }
+  }
+
+  @media (max-width: 576px) {
+    /* Responsive layouts for small phones */
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      text-align: center;
+    }
+    .footer-brand {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-social {
+      justify-content: center;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+    .ingredients-grid {
+      grid-template-columns: 1fr;
+    }
+    .bottle-silhouette, .smoke-container {
+      display: none; /* Hide on extremely small screen space */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-logo {
+      font-size: 1.18rem;
+    }
+    .nav-logo .arabic-sub {
+      font-size: 0.52rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -2009,6 +2254,45 @@
   [data-theme="light"] .nav-links a:hover { color: var(--gold); }
   [data-theme="light"] .nav-icon { color: #5A3D2B; }
   [data-theme="light"] .hamburger span { background: #5A3D2B; }
+
+  /* Light Theme Mobile Navigation Drawer */
+  @media (max-width: 768px) {
+    [data-theme="light"] .nav-links {
+      background: rgba(253, 246, 240, 0.98);
+      border-left-color: rgba(183, 110, 121, 0.18);
+    }
+    [data-theme="light"] .nav-links a {
+      color: #5A3D2B;
+    }
+    [data-theme="light"] .nav-links .divider-li {
+      background: rgba(183, 110, 121, 0.15);
+    }
+    [data-theme="light"] .mobile-search-bar {
+      border-color: rgba(183, 110, 121, 0.3);
+      background: rgba(90, 61, 43, 0.03);
+    }
+    [data-theme="light"] .mobile-search-bar input {
+      color: #1C0F08;
+    }
+    [data-theme="light"] .mobile-search-bar input::placeholder {
+      color: rgba(90, 61, 43, 0.45);
+    }
+    [data-theme="light"] .mobile-search-bar svg {
+      color: #5A3D2B;
+    }
+    [data-theme="light"] .mobile-wishlist-link {
+      color: #5A3D2B;
+    }
+    [data-theme="light"] .mobile-wishlist-link svg {
+      color: #5A3D2B;
+    }
+    [data-theme="light"] .nav-overlay {
+      background: rgba(90, 61, 43, 0.45);
+    }
+    [data-theme="light"] .hamburger:hover {
+      background: rgba(183, 110, 121, 0.08);
+    }
+  }
 
   /* Hero – rose-gold dawn sky */
   [data-theme="light"] .hero-sky {
@@ -2272,31 +2556,52 @@
   </div>
 </div>
 
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay" onclick="toggleMenu()"></div>
+
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
     RAZZAL FRAGRANCE
     <span class="arabic-sub">عطور رزال</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#collections">Collections</a></li>
     <li><a href="#catalogue">Shop All</a></li>
     <li><a href="#heritage">Heritage</a></li>
     <li><a href="#ingredients">Ingredients</a></li>
     <li><a href="#gifting">Gifting</a></li>
     <li><a href="#">Stores</a></li>
+    
+    <!-- Mobile-only Nav Items -->
+    <li class="mobile-only-nav-item divider-li"></li>
+    <li class="mobile-only-nav-item search-li">
+      <div class="mobile-search-bar">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search fragrances...">
+      </div>
+    </li>
+    <li class="mobile-only-nav-item extra-actions-li">
+      <a href="#" class="mobile-wishlist-link">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Wishlist
+      </a>
+    </li>
+    <li class="mobile-only-nav-item lang-li">
+      <span class="mobile-lang-switch">Arabic (العربية)</span>
+    </li>
   </ul>
   <div class="nav-actions">
     <!-- Search -->
-    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <svg class="nav-icon nav-icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <!-- Wishlist -->
-    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <svg class="nav-icon nav-icon-wishlist" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     <!-- Cart -->
     <div style="display:flex;align-items:flex-start;cursor:pointer" onclick="toggleCart()">
       <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     </div>
     <!-- Language -->
-    <span style="font-size:0.62rem;letter-spacing:0.2em;color:var(--sand);opacity:0.6;cursor:pointer;transition:color 0.3s" onmouseenter="this.style.color='var(--gold)'" onmouseleave="this.style.color='var(--sand)'">AR | EN</span>
+    <span class="nav-lang" style="font-size:0.62rem;letter-spacing:0.2em;color:var(--sand);opacity:0.6;cursor:pointer;transition:color 0.3s" onmouseenter="this.style.color='var(--gold)'" onmouseleave="this.style.color='var(--sand)'">AR | EN</span>
     <!-- THEME TOGGLE -->
     <button id="theme-toggle" aria-label="Switch theme">
       <span class="t-icon" id="theme-icon">☀️</span>
@@ -4019,8 +4324,35 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  // Mobile menu toggle
+  function toggleMenu() {
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cartOverlay');
+    if (cartDrawer && cartDrawer.classList.contains('open')) {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    }
+
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    const overlay = document.getElementById('navOverlay');
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    overlay.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
   // Cart
   function toggleCart() {
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    const navOverlay = document.getElementById('navOverlay');
+    if (navLinks && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      navOverlay.classList.remove('open');
+    }
+
     const drawer = document.getElementById('cart-drawer');
     const overlay = document.getElementById('cartOverlay');
     const open = drawer.classList.toggle('open');
@@ -4028,10 +4360,25 @@
     document.body.style.overflow = open ? 'hidden' : '';
   }
 
+  // Hamburger Click Handler
+  document.getElementById('hamburger').addEventListener('click', toggleMenu);
+
+  // Close Menu Drawer on Link Clicks
+  document.querySelectorAll('.nav-links a:not(.mobile-wishlist-link)').forEach(link => {
+    link.addEventListener('click', () => {
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks && navLinks.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+  });
+
   // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
