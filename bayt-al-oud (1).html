@@ -1,0 +1,4105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAZZAL FRAGRANCE — Arabian Luxury Fragrance House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Noto+Serif+Arabic:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #060D08;
+    --sand: #D9CCB8;
+    --gold: #C8A55B;
+    --gold-light: #E2C47A;
+    --emerald: #153D35;
+    --ivory: #F8F4EE;
+    --oud: #102818;
+    --oud-light: #153D35;
+    --white: #FFFFFF;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+    --arabic: 'Noto Serif Arabic', serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--black);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(0deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 60px),
+      repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 60px),
+      repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 30px),
+      repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 30px);
+    pointer-events: none;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+  /* ── UTILITY ── */
+  .eyebrow {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+  .gold { color: var(--gold); }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.6rem 0;
+  }
+  .divider.center { margin: 1.6rem auto; }
+  .btn {
+    display: inline-block;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.4rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+  }
+  .btn:hover { color: var(--black); }
+  .btn:hover::before { transform: scaleX(1); }
+  .btn-fill {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .btn-fill::before { background: var(--oud); }
+  .btn-fill:hover { color: var(--ivory); border-color: var(--oud); }
+
+  /* ── FADE IN ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .reveal-delay-4 { transition-delay: 0.6s; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 4vw;
+    transition: background 0.5s, padding 0.4s;
+  }
+  #navbar.scrolled {
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(20px);
+    padding: 1rem 4vw;
+    border-bottom: 1px solid rgba(200,165,91,0.12);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-logo .arabic-sub {
+    display: block;
+    font-family: var(--arabic);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-top: 2px;
+    text-align: center;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+  }
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: var(--sand);
+    transition: color 0.3s;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  .nav-icon:hover { color: var(--gold); }
+  .cart-count {
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.6rem;
+    font-weight: 500;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,165,91,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(21,61,53,0.4) 0%, transparent 50%),
+      linear-gradient(160deg, #060D08 0%, #0D1F12 35%, #102818 70%, #060D08 100%);
+  }
+  /* Cinematic desert scene drawn in CSS */
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  /* Sky gradient */
+  .hero-sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      #060D08 0%,
+      #0D1F12 20%,
+      #102818 40%,
+      #153D35 55%,
+      #0F2D26 65%,
+      #1A4A40 72%,
+      #215A4F 78%,
+      #2C7A6B 82%,
+      #359482 85%,
+      #1A4A40 90%,
+      #102818 95%,
+      #060D08 100%
+    );
+  }
+  /* Galaxy Gold Sprinkles */
+  .hero-stars {
+    position: absolute;
+    top: -50%; left: -50%; 
+    width: 200%; height: 200%;
+    animation: galaxyRotate 200s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes galaxyRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+  }
+  @keyframes twinkle {
+    0% { opacity: 0.1; transform: scale(0.6); }
+    100% { opacity: 0.9; transform: scale(1.3); }
+  }
+  /* Dunes */
+  .hero-dunes {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+  }
+  .dune {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .dune-1 {
+    bottom: -10%;
+    left: -5%;
+    width: 70%;
+    height: 90%;
+    background: radial-gradient(ellipse at 60% 20%, #153D35 0%, #102818 40%, #060D08 80%);
+  }
+  .dune-2 {
+    bottom: -15%;
+    right: -5%;
+    width: 65%;
+    height: 80%;
+    background: radial-gradient(ellipse at 40% 15%, #1A4A40 0%, #102818 50%, #060D08 85%);
+  }
+  .dune-3 {
+    bottom: -5%;
+    left: 20%;
+    width: 60%;
+    height: 65%;
+    background: radial-gradient(ellipse at 50% 10%, #215A4F 0%, #153D35 45%, #0D1F12 85%);
+  }
+  .dune-4 {
+    bottom: 5%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    background: radial-gradient(ellipse at 50% 5%, #C8A55B 0%, #A87C35 30%, #153D35 70%);
+  }
+  /* Horizon glow */
+  .horizon-glow {
+    position: absolute;
+    bottom: 40%;
+    left: 0; right: 0;
+    height: 20%;
+    background: linear-gradient(180deg, transparent 0%, rgba(200,138,46,0.25) 40%, rgba(200,138,46,0.08) 80%, transparent 100%);
+    filter: blur(8px);
+  }
+  /* Incense smoke particles */
+  .smoke-container {
+    position: absolute;
+    bottom: 30%;
+    right: 15%;
+    width: 60px;
+  }
+  .smoke-particle {
+    position: absolute;
+    width: 3px;
+    border-radius: 50%;
+    background: rgba(200,165,91,0.4);
+    animation: smokeRise linear infinite;
+    filter: blur(2px);
+  }
+  @keyframes smokeRise {
+    0% { bottom: 0; opacity: 0.6; transform: translateX(0) scaleX(1); height: 40px; }
+    50% { opacity: 0.3; transform: translateX(15px) scaleX(1.5); height: 60px; }
+    100% { bottom: 200px; opacity: 0; transform: translateX(-10px) scaleX(3); height: 80px; }
+  }
+  /* Perfume bottle silhouette */
+  .bottle-silhouette {
+    position: absolute;
+    bottom: 28%;
+    right: 14%;
+    width: 28px;
+    height: 55px;
+  }
+  .bottle-body {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 42px;
+    background: linear-gradient(135deg, rgba(200,165,91,0.9), rgba(200,165,91,0.4), rgba(200,165,91,0.8));
+    border-radius: 3px 3px 4px 4px;
+    box-shadow: 0 0 20px rgba(200,165,91,0.4), inset 2px 0 4px rgba(255,255,255,0.2);
+  }
+  .bottle-neck {
+    position: absolute;
+    bottom: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, rgba(200,165,91,0.9), rgba(200,165,91,0.5));
+    border-radius: 1px;
+  }
+  .bottle-cap {
+    position: absolute;
+    bottom: 51px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 6px;
+    background: linear-gradient(135deg, rgba(200,165,91,1), rgba(160,120,60,0.9));
+    border-radius: 2px 2px 0 0;
+  }
+  /* Falcon silhouette */
+  .falcon {
+    position: absolute;
+    top: 22%;
+    right: 30%;
+    animation: falconGlide 12s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes falconGlide {
+    0% { transform: translate(0, 0) rotate(-2deg); }
+    25% { transform: translate(-30px, -15px) rotate(1deg); }
+    50% { transform: translate(-60px, 5px) rotate(-1deg); }
+    75% { transform: translate(-30px, 15px) rotate(2deg); }
+    100% { transform: translate(0, 0) rotate(-2deg); }
+  }
+  /* Arabic geometric pattern overlay */
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image:
+      repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 30px 30px;
+  }
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,10,0.7) 100%);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(10,10,10,0.3) 0%,
+      rgba(10,10,10,0.05) 40%,
+      rgba(10,10,10,0.1) 70%,
+      rgba(10,10,10,0.6) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+  .hero-legacy {
+    font-family: var(--arabic);
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-tagline {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 7vw, 7rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--ivory);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.9s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 200;
+    color: var(--sand);
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.5s forwards;
+  }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s ease 2.2s forwards;
+  }
+  .scroll-indicator span {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0.6;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.6); opacity: 0.4; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-section {
+    padding: 1.4rem 0;
+    border-top: 1px solid rgba(200,165,91,0.15);
+    border-bottom: 1px solid rgba(200,165,91,0.15);
+    overflow: hidden;
+    background: rgba(200,165,91,0.03);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .marquee-dot {
+    color: var(--gold);
+    opacity: 1 !important;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 8rem 4vw; }
+  .section-inner { max-width: 1400px; margin: 0 auto; }
+
+  /* ── HERITAGE ── */
+  #heritage { padding: 10rem 4vw; }
+  .heritage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8vw;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .heritage-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .heritage-image-inner {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(200,165,91,0.15) 0%, transparent 50%),
+      linear-gradient(160deg, #2C1D0A 0%, #1A0F07 30%, #4A2E12 60%, #2C1D0A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s ease;
+  }
+  .heritage-image:hover .heritage-image-inner { transform: scale(1.03); }
+  /* Abstract oud vessel illustration */
+  .vessel-art {
+    position: relative;
+    width: 160px;
+    height: 260px;
+  }
+  .vessel-body {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 180px;
+    background: linear-gradient(135deg, rgba(200,165,91,0.7) 0%, rgba(160,120,60,0.4) 50%, rgba(200,165,91,0.6) 100%);
+    border-radius: 50% 50% 10px 10px / 30% 30% 10px 10px;
+    box-shadow: 0 0 60px rgba(200,165,91,0.3), inset 3px 0 12px rgba(255,255,255,0.15);
+  }
+  .vessel-neck {
+    position: absolute;
+    bottom: 178px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 50px;
+    background: linear-gradient(180deg, rgba(200,165,91,0.5), rgba(200,165,91,0.8));
+    border-radius: 4px;
+  }
+  .vessel-spout {
+    position: absolute;
+    bottom: 226px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 16px;
+    background: linear-gradient(135deg, rgba(200,165,91,0.9), rgba(160,120,60,0.7));
+    border-radius: 2px 2px 0 0;
+  }
+  .vessel-handle {
+    position: absolute;
+    bottom: 80px;
+    right: 8px;
+    width: 20px;
+    height: 60px;
+    border: 2px solid rgba(200,165,91,0.5);
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+  }
+  .vessel-smoke {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(180deg, transparent, rgba(200,165,91,0.6));
+    filter: blur(3px);
+    animation: vesselSmoke 3s ease-in-out infinite;
+  }
+  @keyframes vesselSmoke {
+    0%, 100% { transform: translateX(-50%) scaleX(1) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateX(-50%) scaleX(2) rotate(5deg); opacity: 0.3; }
+  }
+  .heritage-frame {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    border: 1px solid rgba(200,165,91,0.2);
+    pointer-events: none;
+  }
+  .heritage-frame::before, .heritage-frame::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .heritage-frame::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+  .heritage-frame::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+  .heritage-year {
+    position: absolute;
+    bottom: 3rem;
+    left: -1.5rem;
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(200,165,91,0.12);
+    line-height: 1;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.2em;
+  }
+  .heritage-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ivory);
+    margin-bottom: 1.8rem;
+  }
+  .heritage-text h2 em { font-style: italic; color: var(--gold); }
+  .heritage-text p {
+    color: var(--sand);
+    line-height: 1.9;
+    font-size: 0.95rem;
+    margin-bottom: 1.4rem;
+    font-weight: 300;
+  }
+  .ingredient-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 2rem 0;
+  }
+  .ingredient-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(200,165,91,0.3);
+    padding: 0.4rem 1rem;
+    transition: all 0.3s;
+  }
+  .ingredient-tag:hover { background: rgba(200,165,91,0.08); border-color: var(--gold); }
+
+  /* ── INGREDIENTS ── */
+  #ingredients { background: rgba(255,255,255,0.01); }
+  #ingredients h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ivory);
+    margin-bottom: 0.8rem;
+  }
+  #ingredients h2 em { font-style: italic; color: var(--gold); }
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 5rem;
+    border: 1px solid rgba(200,165,91,0.1);
+  }
+  .ingredient-card {
+    background: rgba(200,165,91,0.02);
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(200,165,91,0.08);
+    transition: all 0.5s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .ingredient-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,165,91,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .ingredient-card:hover::before { opacity: 1; }
+  .ingredient-card:hover {
+    border-color: rgba(200,165,91,0.25);
+    transform: translateY(-4px);
+  }
+  .ingredient-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.4rem;
+    position: relative;
+  }
+  .ingredient-icon svg { width: 100%; height: 100%; }
+  .ingredient-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.4rem;
+  }
+  .ingredient-card .origin {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .ingredient-card p {
+    font-size: 0.82rem;
+    color: var(--sand);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ── COLLECTIONS ── */
+  #collections { padding: 0; }
+  .collection-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+    align-items: center;
+  }
+  .collection-panel.reverse { direction: rtl; }
+  .collection-panel.reverse > * { direction: ltr; }
+  .collection-image {
+    height: 100%;
+    min-height: 90vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .collection-image-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .collection-panel:hover .collection-image-inner { transform: scale(1.04); }
+  /* Product color schemes */
+  .prod-royal {
+    background: linear-gradient(135deg,
+      #040905 0%, #0A150D 20%, #102818 40%,
+      #1A4A40 60%, #102818 80%, #040905 100%);
+  }
+  .prod-majlis {
+    background: linear-gradient(135deg,
+      #060D08 0%, #0D1F12 20%, #102818 40%,
+      #153D35 60%, #0F2D26 80%, #061510 100%);
+  }
+  .prod-desert {
+    background: linear-gradient(135deg,
+      #08100A 0%, #102818 20%, #153D35 40%,
+      #215A4F 60%, #153D35 80%, #08100A 100%);
+  }
+  .bottle-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .large-bottle {
+    position: relative;
+    width: 100px;
+    filter: drop-shadow(0 20px 60px rgba(200,165,91,0.35));
+  }
+  .large-bottle-cap {
+    width: 64px;
+    height: 26px;
+    background: linear-gradient(135deg, #E2C47A, #C8A55B, #A07830);
+    border-radius: 4px 4px 0 0;
+    margin: 0 auto;
+    box-shadow: 0 -4px 20px rgba(200,165,91,0.3);
+  }
+  .large-bottle-neck {
+    width: 36px;
+    height: 24px;
+    background: linear-gradient(180deg, #D4B468, #C8A55B);
+    margin: 0 auto;
+  }
+  .large-bottle-collar {
+    width: 72px;
+    height: 8px;
+    background: linear-gradient(180deg, #C8A55B, #A07830);
+    margin: 0 auto;
+    border-radius: 1px;
+  }
+  .large-bottle-body {
+    width: 100px;
+    height: 180px;
+    border-radius: 4px 4px 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .royal-bottle .large-bottle-body {
+    background: linear-gradient(135deg,
+      rgba(200,165,91,0.9) 0%,
+      rgba(160,120,50,0.6) 30%,
+      rgba(200,165,91,0.5) 50%,
+      rgba(160,120,50,0.7) 70%,
+      rgba(200,165,91,0.85) 100%);
+    box-shadow: inset 4px 0 16px rgba(255,255,255,0.2), inset -4px 0 16px rgba(0,0,0,0.3), 0 0 80px rgba(200,165,91,0.25);
+  }
+  .majlis-bottle .large-bottle-body {
+    background: linear-gradient(135deg,
+      rgba(21,61,53,0.95) 0%,
+      rgba(200,165,91,0.3) 30%,
+      rgba(21,61,53,0.8) 50%,
+      rgba(200,165,91,0.2) 70%,
+      rgba(21,61,53,0.9) 100%);
+    border: 1px solid rgba(200,165,91,0.4);
+    box-shadow: inset 0 0 30px rgba(200,165,91,0.1), 0 0 80px rgba(21,61,53,0.4);
+  }
+  .desert-bottle .large-bottle-body {
+    background: linear-gradient(135deg,
+      rgba(248,244,238,0.9) 0%,
+      rgba(217,204,184,0.6) 30%,
+      rgba(248,244,238,0.8) 50%,
+      rgba(200,165,91,0.4) 70%,
+      rgba(248,244,238,0.85) 100%);
+    box-shadow: inset 4px 0 16px rgba(255,255,255,0.4), 0 0 80px rgba(248,244,238,0.15);
+  }
+  .bottle-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80px;
+  }
+  .bottle-label-name {
+    font-family: var(--serif);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(10,10,10,0.7);
+    display: block;
+  }
+  .bottle-label-line {
+    width: 30px;
+    height: 1px;
+    background: rgba(10,10,10,0.4);
+    margin: 4px auto;
+  }
+  .bottle-glow {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    border-radius: 50%;
+    filter: blur(15px);
+  }
+  .royal-glow { background: rgba(200,165,91,0.5); }
+  .majlis-glow { background: rgba(21,61,53,0.6); }
+  .desert-glow { background: rgba(200,165,91,0.35); }
+  .smoke-wisps {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 120px;
+  }
+  .wisp {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(8px);
+    animation: wispFloat linear infinite;
+  }
+  @keyframes wispFloat {
+    0% { opacity: 0; transform: translateY(0) translateX(0) scale(0.5); }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.15; }
+    100% { opacity: 0; transform: translateY(-120px) translateX(20px) scale(2); }
+  }
+  .collection-content {
+    padding: 6vw 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .collection-number {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(200,165,91,0.1);
+    line-height: 1;
+    margin-bottom: -1rem;
+  }
+  .collection-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 4vw, 4.5rem);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .collection-size {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--sand);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .collection-content p {
+    font-size: 1rem;
+    color: var(--sand);
+    line-height: 1.9;
+    font-weight: 300;
+    max-width: 380px;
+    margin-bottom: 2rem;
+  }
+  .collection-price {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+  .collection-price span {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--sand);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+  }
+  .collection-actions { display: flex; gap: 1rem; align-items: center; }
+  .collection-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,165,91,0.2), transparent);
+  }
+
+  /* ── WHY US ── */
+  #why {
+    background: linear-gradient(180deg, var(--black) 0%, rgba(21,61,53,0.08) 50%, var(--black) 100%);
+  }
+  #why h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ivory);
+    margin-bottom: 5rem;
+  }
+  #why h2 em { font-style: italic; color: var(--gold); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .why-card {
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(200,165,91,0.08);
+    transition: all 0.4s;
+    position: relative;
+  }
+  .why-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s;
+  }
+  .why-card:hover { background: rgba(200,165,91,0.03); }
+  .why-card:hover::after { width: 60%; }
+  .why-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 1.8rem;
+    color: var(--gold);
+  }
+  .why-card h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.8rem;
+  }
+  .why-card p {
+    font-size: 0.82rem;
+    color: var(--sand);
+    line-height: 1.7;
+    opacity: 0.75;
+  }
+
+  /* ── BEST SELLERS ── */
+  #bestsellers { overflow: hidden; }
+  #bestsellers h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ivory);
+    margin-bottom: 4rem;
+  }
+  #bestsellers h2 em { font-style: italic; color: var(--gold); }
+  .bestsellers-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    group: true;
+  }
+  .product-card-image {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+  .product-card-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .product-card:hover .product-card-bg { transform: scale(1.06); }
+  .product-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,10,0);
+    transition: background 0.4s;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+  .product-card:hover .product-overlay {
+    background: rgba(10,10,10,0.5);
+  }
+  .quick-add {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.35s;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.8rem;
+    border: 1px solid var(--ivory);
+    color: var(--ivory);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.35s;
+  }
+  .product-card:hover .quick-add { opacity: 1; transform: translateY(0); }
+  .quick-add:hover { background: var(--ivory); color: var(--black); }
+  .product-wish {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(10,10,10,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: none;
+  }
+  .product-card:hover .product-wish { opacity: 1; }
+  .product-wish svg { width: 14px; height: 14px; color: var(--ivory); }
+  .product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 0.25rem 0.7rem;
+  }
+  .product-info { padding: 0 0.2rem; }
+  .product-info h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.3rem;
+  }
+  .product-info .prod-desc {
+    font-size: 0.78rem;
+    color: var(--sand);
+    line-height: 1.6;
+    opacity: 0.7;
+    margin-bottom: 0.6rem;
+  }
+  .product-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .star-icon { color: var(--gold); font-size: 0.7rem; }
+  .review-count { font-size: 0.65rem; color: var(--sand); opacity: 0.6; margin-left: 0.4rem; }
+  .product-price {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  /* ── ART OF PERFUMERY ── */
+  #art {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .art-bg {
+    height: 70vh;
+    background: linear-gradient(160deg,
+      #060D08 0%, #0D1F12 15%, #102818 30%,
+      #153D35 50%, #102818 70%, #060D08 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  /* Geometric Arabic pattern */
+  .art-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      repeating-linear-gradient(0deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 60px),
+      repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 60px),
+      repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 30px),
+      repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 30px);
+  }
+  .art-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 4rem 4vw;
+    max-width: 900px;
+  }
+  .art-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 5rem);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+  .art-content h2 em { font-style: italic; color: var(--gold); }
+  .art-content p {
+    font-size: 1rem;
+    color: var(--sand);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+  .art-steps {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+  .art-step {
+    text-align: center;
+    position: relative;
+  }
+  .art-step::after {
+    content: '→';
+    position: absolute;
+    right: -2.5rem;
+    top: 0.8rem;
+    color: rgba(200,165,91,0.3);
+    font-size: 1rem;
+  }
+  .art-step:last-child::after { display: none; }
+  .art-step-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: rgba(200,165,91,0.25);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .art-step-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    background: rgba(255,255,255,0.01);
+  }
+  #testimonials h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ivory);
+    margin-bottom: 5rem;
+  }
+  #testimonials h2 em { font-style: italic; color: var(--gold); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .testimonial {
+    border: 1px solid rgba(200,165,91,0.1);
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: border-color 0.4s;
+  }
+  .testimonial:hover { border-color: rgba(200,165,91,0.25); }
+  .quote-mark {
+    font-family: var(--serif);
+    font-size: 5rem;
+    line-height: 0.5;
+    color: rgba(200,165,91,0.2);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .testimonial p {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--sand);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 1.2rem;
+    color: var(--gold);
+    font-size: 0.75rem;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,165,91,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--gold);
+    background: rgba(200,165,91,0.06);
+    flex-shrink: 0;
+  }
+  .author-info span {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.05em;
+  }
+  .author-info small {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--sand);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  /* ── MAJLIS ── */
+  #majlis {
+    padding: 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .majlis-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(200,165,91,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(74,53,40,0.3) 0%, transparent 40%),
+      linear-gradient(135deg, #1A0F07 0%, #0D0A05 40%, #1E1408 70%, #2C1D0A 100%);
+  }
+  /* Majlis arch and lamp decorations */
+  .majlis-arch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(200,165,91,0.08);
+    border-bottom: none;
+    border-radius: 250px 250px 0 0;
+    pointer-events: none;
+  }
+  .majlis-arch::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    border: 1px solid rgba(200,165,91,0.05);
+    border-bottom: none;
+    border-radius: 240px 240px 0 0;
+  }
+  .lantern {
+    position: absolute;
+    width: 12px;
+    height: 24px;
+    background: linear-gradient(180deg, rgba(200,165,91,0.7), rgba(200,138,46,0.4));
+    border-radius: 2px 2px 4px 4px;
+    filter: blur(1px);
+    animation: lanternSway 4s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(200,165,91,0.5);
+  }
+  .lantern::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 6px;
+    background: rgba(200,165,91,0.5);
+  }
+  @keyframes lanternSway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  .lantern-1 { top: 15%; left: 15%; }
+  .lantern-2 { top: 20%; right: 18%; animation-delay: 1s; }
+  .lantern-3 { top: 10%; left: 40%; animation-delay: 2s; width: 8px; height: 16px; }
+  .majlis-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(30deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 40px),
+      repeating-linear-gradient(-30deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 40px),
+      repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 40px);
+  }
+  .majlis-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 20%, rgba(10,10,10,0.6) 100%);
+  }
+  .majlis-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 8rem 4vw;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .arabic-decoration {
+    font-family: var(--arabic);
+    font-size: 2.5rem;
+    color: rgba(200,165,91,0.4);
+    display: block;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+  .majlis-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+  .majlis-content h2 em { font-style: italic; color: var(--gold); }
+  .majlis-content p {
+    font-size: 1rem;
+    color: var(--sand);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    opacity: 0.85;
+  }
+
+  /* ── GIFTING ── */
+  #gifting { background: rgba(200,165,91,0.02); }
+  #gifting h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ivory);
+    margin-bottom: 4rem;
+  }
+  #gifting h2 em { font-style: italic; color: var(--gold); }
+  .gifts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .gift-card {
+    border: 1px solid rgba(200,165,91,0.1);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.4s;
+  }
+  .gift-card:hover { border-color: rgba(200,165,91,0.3); }
+  .gift-card-main { grid-row: 1 / 3; }
+  .gift-image {
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s ease;
+  }
+  .gift-card-main .gift-image { aspect-ratio: unset; min-height: 400px; }
+  .gift-card:hover .gift-image { transform: scale(1.04); }
+  .gift-bg-wedding {
+    background: linear-gradient(135deg, #2C1D0A 0%, #4A3018 40%, #C8A55B 60%, #4A3018 80%, #1A0F07 100%);
+  }
+  .gift-bg-corp {
+    background: linear-gradient(135deg, #060D08 0%, #0D1F12 40%, #153D35 70%, #060D08 100%);
+  }
+  .gift-bg-ramadan {
+    background: linear-gradient(135deg, #1A0D1A 0%, #2C1A2E 40%, #4A2C50 60%, #2C1A2E 80%, #0D0A10 100%);
+  }
+  .gift-bg-eid {
+    background: linear-gradient(135deg, #1A1208 0%, #2C200E 40%, #C8A55B 60%, #2C200E 80%, #1A1208 100%);
+  }
+  .gift-bg-custom {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 40%, #C8A55B 60%, #1A1A1A 80%, #0A0A0A 100%);
+  }
+  .gift-icon-large {
+    font-size: 4rem;
+    opacity: 0.4;
+  }
+  .gift-info {
+    padding: 1.5rem;
+    background: rgba(10,10,10,0.5);
+  }
+  .gift-card-main .gift-info { padding: 2rem; }
+  .gift-info h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.4rem;
+  }
+  .gift-card-main .gift-info h3 { font-size: 1.7rem; margin-bottom: 0.8rem; }
+  .gift-info p {
+    font-size: 0.78rem;
+    color: var(--sand);
+    line-height: 1.6;
+    opacity: 0.7;
+  }
+
+  /* ── INSTAGRAM ── */
+  #instagram { background: var(--black); }
+  #instagram h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+  }
+  .insta-handle {
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 3rem;
+  }
+  .insta-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto;
+    gap: 4px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .insta-item {
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+  }
+  .insta-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .insta-item:nth-child(5) { grid-column: 5 / 7; grid-row: 1 / 3; }
+  .insta-image {
+    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+  }
+  .insta-item:nth-child(1) .insta-image,
+  .insta-item:nth-child(5) .insta-image { aspect-ratio: unset; min-height: 300px; }
+  .insta-item:hover .insta-image { transform: scale(1.06); }
+  .insta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,10,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s;
+  }
+  .insta-item:hover .insta-overlay { background: rgba(10,10,10,0.5); }
+  .insta-heart {
+    opacity: 0;
+    color: white;
+    font-size: 1.5rem;
+    transition: opacity 0.3s;
+  }
+  .insta-item:hover .insta-heart { opacity: 1; }
+  /* Insta colors */
+  .insta-c1 { background: linear-gradient(135deg, #2C1D0A 0%, #4A3018 50%, #8B6030 100%); }
+  .insta-c2 { background: linear-gradient(135deg, #060D08 0%, #153D35 60%, #0D1F12 100%); }
+  .insta-c3 { background: linear-gradient(135deg, #1A0D05 0%, #4A2C12 50%, #C8A55B 100%); }
+  .insta-c4 { background: linear-gradient(135deg, #0A0A0A 0%, #1A1208 50%, #2C1D0A 100%); }
+  .insta-c5 { background: linear-gradient(135deg, #1A0F07 0%, #6B4220 50%, #4A2C12 100%); }
+  .insta-c6 { background: linear-gradient(135deg, #060D08 0%, #102818 50%, #1A3B2E 100%); }
+  .insta-c7 { background: linear-gradient(135deg, #2C1D0A 0%, #C8A55B 40%, #4A3018 100%); }
+  .insta-c8 { background: linear-gradient(135deg, #1A1208 0%, #3D2510 50%, #4A2C12 100%); }
+
+  /* ── NEWSLETTER ── */
+  #newsletter {
+    background: linear-gradient(160deg, rgba(21,61,53,0.15) 0%, rgba(10,10,10,0) 50%, rgba(74,53,40,0.1) 100%);
+    text-align: center;
+    padding: 10rem 4vw;
+  }
+  .newsletter-arabic {
+    font-family: var(--arabic);
+    font-size: 1.2rem;
+    color: rgba(200,165,91,0.5);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  #newsletter h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    font-weight: 300;
+    color: var(--ivory);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  #newsletter h2 em { font-style: italic; color: var(--gold); }
+  #newsletter p {
+    font-size: 0.9rem;
+    color: var(--sand);
+    opacity: 0.7;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid rgba(200,165,91,0.3);
+  }
+  .newsletter-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 1.1rem 1.5rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--ivory);
+    outline: none;
+    letter-spacing: 0.05em;
+  }
+  .newsletter-form input::placeholder { color: rgba(217,204,184,0.4); }
+  .newsletter-form button {
+    background: var(--gold);
+    border: none;
+    padding: 1.1rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    cursor: pointer;
+    font-weight: 400;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+  .newsletter-form button:hover { background: var(--gold-light); }
+  .newsletter-note {
+    margin-top: 1rem;
+    font-size: 0.65rem;
+    color: var(--sand);
+    opacity: 0.4;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070707;
+    border-top: 1px solid rgba(200,165,91,0.1);
+    padding: 6rem 4vw 3rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 4rem;
+    max-width: 1300px;
+    margin: 0 auto 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(200,165,91,0.08);
+  }
+  .footer-brand .nav-logo { font-size: 1.8rem; display: inline-block; margin-bottom: 1.2rem; }
+  .footer-brand p {
+    font-size: 0.82rem;
+    color: var(--sand);
+    line-height: 1.8;
+    opacity: 0.6;
+    margin-bottom: 1.8rem;
+  }
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+  .social-link {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(200,165,91,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sand);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.7rem;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.8rem;
+    font-weight: 400;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.8rem; }
+  .footer-col a {
+    font-size: 0.82rem;
+    color: var(--sand);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s, color 0.3s;
+    letter-spacing: 0.03em;
+  }
+  .footer-col a:hover { opacity: 1; color: var(--gold); }
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.7rem;
+    color: var(--sand);
+    opacity: 0.35;
+    letter-spacing: 0.1em;
+  }
+  .footer-legal {
+    display: flex;
+    gap: 2rem;
+  }
+  .footer-legal a {
+    font-size: 0.7rem;
+    color: var(--sand);
+    text-decoration: none;
+    opacity: 0.35;
+    letter-spacing: 0.08em;
+    transition: opacity 0.3s;
+  }
+  .footer-legal a:hover { opacity: 0.7; }
+  .payment-icons {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .pay-icon {
+    width: 36px;
+    height: 22px;
+    border: 1px solid rgba(200,165,91,0.15);
+    border-radius: 2px;
+    background: rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.45rem;
+    color: var(--sand);
+    opacity: 0.4;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── MINI CART DRAWER ── */
+  #cart-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 380px;
+    height: 100vh;
+    background: #0D0D0D;
+    border-left: 1px solid rgba(200,165,91,0.15);
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+  }
+  #cart-drawer.open { transform: translateX(0); }
+  .cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-bottom: 1px solid rgba(200,165,91,0.1);
+  }
+  .cart-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.08em;
+  }
+  .cart-close {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+  }
+  .cart-close:hover { color: var(--gold); }
+  .cart-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--sand);
+    opacity: 0.5;
+  }
+  .cart-empty svg { width: 48px; height: 48px; }
+  .cart-empty p { font-size: 0.82rem; letter-spacing: 0.1em; }
+  .cart-footer {
+    padding: 2rem;
+    border-top: 1px solid rgba(200,165,91,0.1);
+  }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .cart-total span:first-child { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); }
+  .cart-total span:last-child { font-family: var(--serif); font-size: 1.4rem; color: var(--gold); }
+  .cart-footer .btn { width: 100%; text-align: center; display: block; }
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.7);
+    z-index: 1999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ── MOBILE ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    width: 24px;
+    height: 1px;
+    background: var(--sand);
+    display: block;
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 1024px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid .testimonial:nth-child(3) { display: none; }
+    .bestsellers-track { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .ingredients-grid { grid-template-columns: repeat(2, 1fr); }
+    .gifts-grid { grid-template-columns: 1fr 1fr; }
+    .gift-card-main { grid-row: auto; grid-column: auto; }
+    .insta-grid { grid-template-columns: repeat(4, 1fr); }
+    .insta-item:nth-child(1) { grid-column: 1 / 3; }
+    .insta-item:nth-child(5) { grid-column: 3 / 5; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-title { font-size: clamp(2.4rem, 9vw, 4rem); }
+    .heritage-grid { grid-template-columns: 1fr; }
+    .heritage-image { max-height: 50vh; }
+    .collection-panel { grid-template-columns: 1fr; }
+    .collection-panel.reverse { direction: ltr; }
+    .collection-image { min-height: 60vw; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .bestsellers-track { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-grid .testimonial:nth-child(3) { display: block; }
+    .testimonials-grid .testimonial:nth-child(2) { display: none; }
+    .art-steps { gap: 2rem; }
+    .art-step::after { display: none; }
+    .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .insta-item:nth-child(1) { grid-column: auto; grid-row: auto; }
+    .insta-item:nth-child(5) { grid-column: auto; grid-row: auto; }
+    .insta-item .insta-image { aspect-ratio: 1; min-height: unset !important; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input, .newsletter-form button { width: 100%; }
+    #cart-drawer { width: 100%; }
+    .gifts-grid { grid-template-columns: 1fr; }
+    section { padding: 5rem 5vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* ══════════════════════════════════════════
+     THEME TOGGLE BUTTON
+  ══════════════════════════════════════════ */
+  #theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: transparent;
+    border: 1px solid rgba(200,165,91,0.35);
+    padding: 0.32rem 0.8rem;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand);
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+    border-radius: 20px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+  #theme-toggle:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(200,165,91,0.06);
+  }
+  #theme-toggle .t-icon { font-size: 0.85rem; line-height: 1; }
+
+  /* ══════════════════════════════════════════
+     ROSE GOLD LIGHT THEME — data-theme="light"
+  ══════════════════════════════════════════ */
+  [data-theme="light"] {
+    --black:      #FDF6F0;
+    --sand:       #5A3D2B;
+    --gold:       #C8A55B;
+    --gold-light: #D4AA60;
+    --emerald:    #8C4B5A;
+    --ivory:      #1C0F08;
+    --oud:        #EDD9C8;
+    --oud-light:  #E0C8B0;
+    --white:      #1A0F07;
+  }
+
+  /* Body */
+  [data-theme="light"] body {
+    background: #FDF6F0;
+    color: #1C0F08;
+  }
+  [data-theme="light"] body::before {
+    opacity: 1;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(183,110,121,0.18) 0, rgba(183,110,121,0.18) 1px, transparent 0, transparent 60px),
+      repeating-linear-gradient(90deg, rgba(183,110,121,0.18) 0, rgba(183,110,121,0.18) 1px, transparent 0, transparent 60px),
+      repeating-linear-gradient(45deg, rgba(200,165,91,0.12) 0, rgba(200,165,91,0.12) 1px, transparent 0, transparent 30px),
+      repeating-linear-gradient(-45deg, rgba(200,165,91,0.12) 0, rgba(200,165,91,0.12) 1px, transparent 0, transparent 30px);
+  }
+
+  /* Scrollbar */
+  [data-theme="light"] ::-webkit-scrollbar-track { background: #FDF6F0; }
+
+  /* Navbar */
+  [data-theme="light"] #navbar.scrolled {
+    background: rgba(253,246,240,0.97);
+    border-bottom-color: rgba(183,110,121,0.2);
+  }
+  [data-theme="light"] .nav-logo { color: #1C0F08; }
+  [data-theme="light"] .nav-links a { color: #5A3D2B; }
+  [data-theme="light"] .nav-links a:hover { color: var(--gold); }
+  [data-theme="light"] .nav-icon { color: #5A3D2B; }
+  [data-theme="light"] .hamburger span { background: #5A3D2B; }
+
+  /* Hero – rose-gold dawn sky */
+  [data-theme="light"] .hero-sky {
+    background: linear-gradient(180deg,
+      #FDF6F0 0%, #F8EAE0 15%, #F0D8CC 30%,
+      #E8C8B8 45%, #DDBBA8 60%,
+      #D4A898 72%, #CCA090 80%,
+      #D4A898 88%, #EDD9C8 95%, #FDF6F0 100%
+    );
+  }
+  [data-theme="light"] .dune-1 {
+    background: radial-gradient(ellipse at 60% 20%, #E8C5B0 0%, #D4A890 40%, #FDF6F0 80%);
+  }
+  [data-theme="light"] .dune-2 {
+    background: radial-gradient(ellipse at 40% 15%, #DDB8A8 0%, #C89880 50%, #FDF6F0 85%);
+  }
+  [data-theme="light"] .dune-3 {
+    background: radial-gradient(ellipse at 50% 10%, #E8D4C0 0%, #D4B090 45%, #EDD9C8 85%);
+  }
+  [data-theme="light"] .dune-4 {
+    background: radial-gradient(ellipse at 50% 5%, #B76E79 0%, #C8857A 30%, #DDB898 70%);
+  }
+  [data-theme="light"] .horizon-glow {
+    background: linear-gradient(180deg, transparent 0%, rgba(183,110,121,0.28) 40%, rgba(200,165,91,0.08) 80%, transparent 100%);
+  }
+  [data-theme="light"] .hero-vignette {
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(250,235,225,0.6) 100%);
+  }
+  [data-theme="light"] .hero-title { color: #1C0F08; }
+  [data-theme="light"] .hero-tagline { color: #5A3D2B; }
+  [data-theme="light"] .hero-sub { color: #5A3D2B; }
+  [data-theme="light"] .scroll-indicator span { color: #5A3D2B; }
+  [data-theme="light"] .hero-overlay {
+    background: linear-gradient(180deg,
+      rgba(253,246,240,0.15) 0%, rgba(253,246,240,0) 40%,
+      rgba(253,246,240,0.05) 70%, rgba(253,246,240,0.4) 100%);
+  }
+
+  /* Marquee */
+  [data-theme="light"] .marquee-section {
+    background: rgba(183,110,121,0.04);
+    border-color: rgba(183,110,121,0.18);
+  }
+  [data-theme="light"] .marquee-item { color: #5A3D2B; }
+
+  /* Section headings */
+  [data-theme="light"] h2 { color: #1C0F08; }
+
+  /* Heritage */
+  [data-theme="light"] .heritage-image-inner {
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(200,165,91,0.18) 0%, transparent 50%),
+      linear-gradient(160deg, #EDD9C8 0%, #E0C8B0 30%, #D4B898 60%, #EDD9C8 100%);
+  }
+  [data-theme="light"] .heritage-text h2 { color: #1C0F08; }
+  [data-theme="light"] .heritage-text p { color: #5A3D2B; }
+  [data-theme="light"] .heritage-year { color: rgba(183,110,121,0.15); }
+  [data-theme="light"] .heritage-frame { border-color: rgba(200,165,91,0.2); }
+
+  /* Ingredients */
+  [data-theme="light"] #ingredients { background: rgba(183,110,121,0.02); }
+  [data-theme="light"] #ingredients h2 { color: #1C0F08; }
+  [data-theme="light"] .ingredient-card {
+    background: rgba(200,165,91,0.04);
+    border-color: rgba(183,110,121,0.1);
+  }
+  [data-theme="light"] .ingredient-card:hover { border-color: rgba(200,165,91,0.3); }
+  [data-theme="light"] .ingredient-card h3 { color: #1C0F08; }
+  [data-theme="light"] .ingredient-card p { color: #5A3D2B; }
+
+  /* Collections */
+  [data-theme="light"] .prod-royal {
+    background: linear-gradient(135deg, #EDD9C8 0%, #E0C8B0 40%, #D4B898 60%, #EDD9C8 100%);
+  }
+  [data-theme="light"] .prod-majlis {
+    background: linear-gradient(135deg, #F0E0D4 0%, #E8CDB8 40%, #DEC0A8 60%, #F0E0D4 100%);
+  }
+  [data-theme="light"] .prod-desert {
+    background: linear-gradient(135deg, #F5EAE0 0%, #EDD9C8 40%, #E4CAB4 60%, #F5EAE0 100%);
+  }
+  [data-theme="light"] .collection-content h2 { color: #1C0F08; }
+  [data-theme="light"] .collection-content p { color: #5A3D2B; }
+  [data-theme="light"] .collection-number { color: rgba(183,110,121,0.12); }
+  [data-theme="light"] .collection-size { color: #5A3D2B; }
+  [data-theme="light"] .collection-price span { color: #5A3D2B; }
+  [data-theme="light"] .collection-divider {
+    background: linear-gradient(90deg, transparent, rgba(183,110,121,0.2), transparent);
+  }
+
+  /* Why us */
+  [data-theme="light"] #why {
+    background: linear-gradient(180deg, #FDF6F0 0%, rgba(183,110,121,0.06) 50%, #FDF6F0 100%);
+  }
+  [data-theme="light"] #why h2 { color: #1C0F08; }
+  [data-theme="light"] .why-card { border-color: rgba(183,110,121,0.12); }
+  [data-theme="light"] .why-card:hover { background: rgba(183,110,121,0.04); }
+  [data-theme="light"] .why-card h3 { color: #1C0F08; }
+  [data-theme="light"] .why-card p { color: #5A3D2B; }
+
+  /* Best sellers */
+  [data-theme="light"] #bestsellers h2 { color: #1C0F08; }
+  [data-theme="light"] .product-info h3 { color: #1C0F08; }
+  [data-theme="light"] .product-info .prod-desc { color: #5A3D2B; }
+  [data-theme="light"] .review-count { color: #5A3D2B; }
+  [data-theme="light"] .product-card:hover .product-overlay { background: rgba(28,15,8,0.35); }
+  [data-theme="light"] .product-wish { background: rgba(253,246,240,0.85); }
+  [data-theme="light"] .product-wish svg { color: #1C0F08; }
+  [data-theme="light"] .quick-add { border-color: #1C0F08; color: #1C0F08; }
+  [data-theme="light"] .quick-add:hover { background: #1C0F08; color: #FDF6F0; }
+
+  /* Art section */
+  [data-theme="light"] .art-bg {
+    background: linear-gradient(160deg,
+      #FDF6F0 0%, #F5E4D4 15%, #EDD3C0 30%,
+      #E4C0A8 50%, #EDD3C0 70%, #FDF6F0 100%);
+  }
+  [data-theme="light"] .art-content h2 { color: #1C0F08; }
+  [data-theme="light"] .art-content p { color: #5A3D2B; }
+
+  /* Testimonials */
+  [data-theme="light"] #testimonials { background: rgba(183,110,121,0.02); }
+  [data-theme="light"] #testimonials h2 { color: #1C0F08; }
+  [data-theme="light"] .testimonial { border-color: rgba(183,110,121,0.12); }
+  [data-theme="light"] .testimonial:hover { border-color: rgba(200,165,91,0.3); }
+  [data-theme="light"] .testimonial p { color: #5A3D2B; }
+  [data-theme="light"] .quote-mark { color: rgba(183,110,121,0.2); }
+  [data-theme="light"] .author-avatar {
+    background: rgba(183,110,121,0.08);
+    border-color: rgba(200,165,91,0.3);
+  }
+  [data-theme="light"] .author-info span { color: #1C0F08; }
+  [data-theme="light"] .author-info small { color: #5A3D2B; }
+
+  /* Majlis */
+  [data-theme="light"] .majlis-bg {
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(200,165,91,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(183,110,121,0.2) 0%, transparent 40%),
+      linear-gradient(135deg, #F5E8DC 0%, #EDD9C8 40%, #F0DDD0 70%, #F5E8DC 100%);
+  }
+  [data-theme="light"] .majlis-vignette {
+    background: radial-gradient(ellipse at center, transparent 20%, rgba(245,232,220,0.5) 100%);
+  }
+  [data-theme="light"] .majlis-content h2 { color: #1C0F08; }
+  [data-theme="light"] .majlis-content p { color: #5A3D2B; }
+  [data-theme="light"] .arabic-decoration { color: rgba(183,110,121,0.5); }
+
+  /* Gifting */
+  [data-theme="light"] #gifting { background: rgba(183,110,121,0.04); }
+  [data-theme="light"] #gifting h2 { color: #1C0F08; }
+  [data-theme="light"] .gift-card { border-color: rgba(183,110,121,0.12); }
+  [data-theme="light"] .gift-card:hover { border-color: rgba(200,165,91,0.3); }
+  [data-theme="light"] .gift-info { background: rgba(253,246,240,0.85); }
+  [data-theme="light"] .gift-info h3 { color: #1C0F08; }
+  [data-theme="light"] .gift-info p { color: #5A3D2B; }
+  [data-theme="light"] .gift-bg-wedding {
+    background: linear-gradient(135deg, #EDD9C8 0%, #D4B898 40%, #C8A55B 60%, #D4B898 80%, #EDD9C8 100%);
+  }
+  [data-theme="light"] .gift-bg-corp {
+    background: linear-gradient(135deg, #F5EAE0 0%, #EDD9C8 40%, #E0C8B0 70%, #F5EAE0 100%);
+  }
+  [data-theme="light"] .gift-bg-ramadan {
+    background: linear-gradient(135deg, #F0D8E4 0%, #DDB8CC 40%, #C890B0 60%, #DDB8CC 80%, #F0D8E4 100%);
+  }
+  [data-theme="light"] .gift-bg-eid {
+    background: linear-gradient(135deg, #F5EAD4 0%, #E8D4A8 40%, #C8A55B 60%, #E8D4A8 80%, #F5EAD4 100%);
+  }
+  [data-theme="light"] .gift-bg-custom {
+    background: linear-gradient(135deg, #F5E8DC 0%, #EDD9C8 40%, #C8A55B 60%, #EDD9C8 80%, #F5E8DC 100%);
+  }
+
+  /* Instagram */
+  [data-theme="light"] #instagram { background: #FDF6F0; }
+  [data-theme="light"] #instagram h2 { color: #1C0F08; }
+
+  /* Product catalogue */
+  [data-theme="light"] .prod-tile {
+    background: rgba(255,245,240,0.7);
+    border-color: rgba(183,110,121,0.12);
+  }
+  [data-theme="light"] .prod-tile:hover { border-color: rgba(200,165,91,0.3); }
+  [data-theme="light"] .prod-tile-info { background: rgba(253,246,240,0.95); }
+  [data-theme="light"] .prod-tile-name { color: #1C0F08; }
+  [data-theme="light"] .prod-tile-sub { color: #5A3D2B; }
+  [data-theme="light"] .prod-tile-num { color: rgba(200,165,91,0.5); }
+  [data-theme="light"] .cat-title { color: #1C0F08; }
+  [data-theme="light"] .cat-count { color: #5A3D2B; }
+  [data-theme="light"] .cat-heading-line {
+    background: linear-gradient(90deg, transparent, rgba(200,165,91,0.4), transparent);
+  }
+
+  /* Newsletter */
+  [data-theme="light"] #newsletter {
+    background: linear-gradient(160deg, rgba(183,110,121,0.1) 0%, rgba(253,246,240,0) 50%, rgba(200,165,91,0.08) 100%);
+  }
+  [data-theme="light"] #newsletter h2 { color: #1C0F08; }
+  [data-theme="light"] #newsletter p { color: #5A3D2B; }
+  [data-theme="light"] .newsletter-arabic { color: rgba(183,110,121,0.55); }
+  [data-theme="light"] .newsletter-form { border-color: rgba(200,165,91,0.35); }
+  [data-theme="light"] .newsletter-form input { color: #1C0F08; }
+  [data-theme="light"] .newsletter-form input::placeholder { color: rgba(90,61,43,0.45); }
+  [data-theme="light"] .newsletter-note { color: #5A3D2B; }
+
+  /* Footer */
+  [data-theme="light"] footer {
+    background: #F0E0D0;
+    border-top-color: rgba(200,165,91,0.2);
+  }
+  [data-theme="light"] .footer-top { border-bottom-color: rgba(183,110,121,0.1); }
+  [data-theme="light"] .footer-brand p { color: #5A3D2B; }
+  [data-theme="light"] .footer-brand .nav-logo { color: #1C0F08; }
+  [data-theme="light"] .social-link { border-color: rgba(183,110,121,0.25); color: #5A3D2B; }
+  [data-theme="light"] .social-link:hover { border-color: var(--gold); color: var(--gold); }
+  [data-theme="light"] .footer-col a { color: #5A3D2B; }
+  [data-theme="light"] .footer-col a:hover { color: var(--gold); }
+  [data-theme="light"] .footer-copy { color: #5A3D2B; }
+  [data-theme="light"] .footer-legal a { color: #5A3D2B; }
+  [data-theme="light"] .pay-icon { border-color: rgba(183,110,121,0.2); background: rgba(255,240,230,0.5); color: #5A3D2B; }
+
+  /* Cart drawer */
+  [data-theme="light"] #cart-drawer { background: #F5E8DC; border-left-color: rgba(200,165,91,0.2); }
+  [data-theme="light"] .cart-header { border-bottom-color: rgba(200,165,91,0.12); }
+  [data-theme="light"] .cart-title { color: #1C0F08; }
+  [data-theme="light"] .cart-close { color: #5A3D2B; }
+  [data-theme="light"] .cart-close:hover { color: var(--gold); }
+  [data-theme="light"] .cart-empty { color: #5A3D2B; }
+  [data-theme="light"] .cart-footer { border-top-color: rgba(200,165,91,0.12); }
+  [data-theme="light"] .cart-overlay { background: rgba(90,61,43,0.5); }
+
+  /* Buttons */
+  [data-theme="light"] .btn { color: var(--gold); border-color: var(--gold); }
+  [data-theme="light"] .btn:hover { color: #FDF6F0; }
+  [data-theme="light"] .btn-fill { background: var(--gold); color: #FDF6F0; }
+  [data-theme="light"] .btn-fill:hover { color: #FDF6F0; }
+
+</style>
+</head>
+<body>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- MINI CART DRAWER -->
+<div id="cart-drawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Selection</span>
+    <button class="cart-close" onclick="toggleCart()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <p>Your cart is empty</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <span>AED 0</span>
+    </div>
+    <a href="#" class="btn btn-fill" style="text-align:center;display:block;">Proceed to Checkout</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    RAZZAL FRAGRANCE
+    <span class="arabic-sub">عطور رزال</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#catalogue">Shop All</a></li>
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#ingredients">Ingredients</a></li>
+    <li><a href="#gifting">Gifting</a></li>
+    <li><a href="#">Stores</a></li>
+  </ul>
+  <div class="nav-actions">
+    <!-- Search -->
+    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <!-- Wishlist -->
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <!-- Cart -->
+    <div style="display:flex;align-items:flex-start;cursor:pointer" onclick="toggleCart()">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    </div>
+    <!-- Language -->
+    <span style="font-size:0.62rem;letter-spacing:0.2em;color:var(--sand);opacity:0.6;cursor:pointer;transition:color 0.3s" onmouseenter="this.style.color='var(--gold)'" onmouseleave="this.style.color='var(--sand)'">AR | EN</span>
+    <!-- THEME TOGGLE -->
+    <button id="theme-toggle" aria-label="Switch theme">
+      <span class="t-icon" id="theme-icon">☀️</span>
+      <span id="theme-label">Rose Gold</span>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-scene">
+    <div class="hero-sky"></div>
+    <div class="hero-stars" id="starsContainer"></div>
+    <div class="horizon-glow"></div>
+    <div class="hero-dunes">
+      <div class="dune dune-1"></div>
+      <div class="dune dune-2"></div>
+      <div class="dune dune-3"></div>
+      <div class="dune dune-4"></div>
+    </div>
+    <!-- Falcon SVG -->
+    <div class="falcon">
+      <svg width="60" height="30" viewBox="0 0 60 30" fill="none">
+        <path d="M30 8 C20 2, 5 8, 0 12 C8 10, 15 11, 20 14 C22 15, 25 15, 27 14 L30 8Z" fill="rgba(200,165,91,0.5)"/>
+        <path d="M30 8 C40 2, 55 8, 60 12 C52 10, 45 11, 40 14 C38 15, 35 15, 33 14 L30 8Z" fill="rgba(200,165,91,0.45)"/>
+        <ellipse cx="30" cy="9" rx="4" ry="3" fill="rgba(200,165,91,0.6)"/>
+        <circle cx="32" cy="8" r="1.5" fill="rgba(74,53,40,0.8)"/>
+        <path d="M30 12 L28 20 L30 19 L32 20 Z" fill="rgba(200,165,91,0.4)"/>
+      </svg>
+    </div>
+    <!-- Incense burner + smoke -->
+    <div class="bottle-silhouette">
+      <div class="bottle-cap"></div>
+      <div class="bottle-neck"></div>
+      <div class="bottle-body"></div>
+    </div>
+    <div class="smoke-container">
+      <div class="smoke-particle" style="animation-duration:4s;animation-delay:0s;left:50%"></div>
+      <div class="smoke-particle" style="animation-duration:5s;animation-delay:1.5s;left:40%"></div>
+      <div class="smoke-particle" style="animation-duration:3.5s;animation-delay:3s;left:60%"></div>
+    </div>
+    <div class="hero-pattern"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-legacy">إرثنا هو العطر</span>
+    <span class="hero-tagline">Our Legacy is Fragrance · Est. 1976 · Dubai, UAE</span>
+    <h1 class="hero-title">Crafting <em>Timeless</em><br>Arabian Luxury</h1>
+    <p class="hero-sub">Born from the heart of the UAE,<br>where ancient traditions meet modern craftsmanship.</p>
+    <div class="hero-cta">
+      <a href="#collections" class="btn btn-fill">Discover Collection</a>
+      <a href="#ingredients" class="btn">Explore Oud</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Indian Oud</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Taif Rose</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Cambodian Oud</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">White Musk</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Frankincense</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Saffron</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Amber</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sandalwood</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Indian Oud</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Taif Rose</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Cambodian Oud</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">White Musk</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Frankincense</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Saffron</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Amber</span>
+    <span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sandalwood</span>
+    <span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- HERITAGE -->
+<section id="heritage">
+  <div class="heritage-grid">
+    <div class="heritage-image reveal">
+      <div class="heritage-image-inner" style="background-image: url('./images/heritage-vessel.png'); background-size: cover; background-position: center;">
+      </div>
+      <div class="heritage-frame"></div>
+      <span class="heritage-year">1976</span>
+    </div>
+    <div class="heritage-text">
+      <span class="eyebrow reveal">Our Heritage</span>
+      <h2 class="reveal reveal-delay-1">Where <em>Ancient Craft</em><br>Meets Royal Ambition</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="reveal reveal-delay-2">Founded in the heart of Old Dubai, Razzal Fragrance was born from a singular vision: to preserve the ancient art of Arabian perfumery and elevate it to the heights of modern luxury. For nearly five decades, our master perfumers have walked the spice markets, forest paths, and sacred valleys of the world in search of the purest raw materials.</p>
+      <p class="reveal reveal-delay-2">We believe a fragrance is not merely a scent — it is a memory, a landscape, a story told across generations. Each bottle carries within it the warmth of the majlis, the silence of the desert at dawn, and the hospitality of a people whose generosity is written into their very culture.</p>
+      <div class="ingredient-tags reveal reveal-delay-3">
+        <span class="ingredient-tag">Pure Oud</span>
+        <span class="ingredient-tag">Amber</span>
+        <span class="ingredient-tag">Taif Rose</span>
+        <span class="ingredient-tag">White Musk</span>
+        <span class="ingredient-tag">Frankincense</span>
+        <span class="ingredient-tag">Sandalwood</span>
+      </div>
+      <a href="#" class="btn reveal reveal-delay-4">Discover Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section id="ingredients">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center;display:block;">The Finest Materials</span>
+    <h2 class="reveal reveal-delay-1">Signature <em>Ingredients</em></h2>
+    <div class="divider center reveal reveal-delay-1"></div>
+    <div class="ingredients-grid">
+
+      <div class="ingredient-card reveal">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 8 C28 8, 20 20, 20 30 C20 38.8 23.6 44 28 44 C32.4 44 36 38.8 36 30 C36 20 28 8 28 8Z" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.1)"/>
+            <path d="M28 44 L28 50" stroke="#C8A55B" stroke-width="1"/>
+            <path d="M22 50 L34 50" stroke="#C8A55B" stroke-width="1"/>
+            <circle cx="28" cy="28" r="4" fill="rgba(200,165,91,0.3)" stroke="#C8A55B" stroke-width="0.5"/>
+            <path d="M18 24 C22 20 24 22 28 20" stroke="rgba(200,165,91,0.4)" stroke-width="0.8" fill="none"/>
+          </svg>
+        </div>
+        <h3>Indian Oud</h3>
+        <div class="origin">Assam, India</div>
+        <p>The rarest form of agarwood, prized for its deep, animalistic richness and centuries of ceremonial significance.</p>
+      </div>
+
+      <div class="ingredient-card reveal reveal-delay-1">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <path d="M28 10 C28 10, 18 22, 18 32 C18 42 22.7 46 28 46 C33.3 46 38 42 38 32 C38 22 28 10 28 10Z" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.08)"/>
+            <path d="M24 30 C26 26, 30 26, 32 30" stroke="rgba(200,165,91,0.5)" stroke-width="0.8" fill="none"/>
+            <path d="M21 36 C24 30, 32 30, 35 36" stroke="rgba(200,165,91,0.4)" stroke-width="0.8" fill="none"/>
+            <path d="M28 46 L28 52" stroke="#C8A55B" stroke-width="1"/>
+          </svg>
+        </div>
+        <h3>Cambodian Oud</h3>
+        <div class="origin">Kampong Speu</div>
+        <p>Lighter and more floral than its Indian counterpart, bearing luminous sweetness over a woody heart.</p>
+      </div>
+
+      <div class="ingredient-card reveal reveal-delay-2">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <circle cx="28" cy="28" r="14" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.08)"/>
+            <circle cx="28" cy="28" r="8" stroke="rgba(200,165,91,0.4)" stroke-width="0.8"/>
+            <path d="M28 14 C28 14, 25 20, 25 28 C25 36, 28 42, 28 42 C28 42, 31 36, 31 28 C31 20, 28 14, 28 14Z" fill="rgba(200,165,91,0.2)"/>
+            <path d="M14 28 C14 28, 20 25, 28 25 C36 25, 42 28, 42 28 C42 28, 36 31, 28 31 C20 31, 14 28, 14 28Z" fill="rgba(200,165,91,0.2)"/>
+          </svg>
+        </div>
+        <h3>Taif Rose</h3>
+        <div class="origin">Taif, Saudi Arabia</div>
+        <p>Harvested once a year at dawn, the Taif rose yields an oil of incomparable honeyed depth and spice.</p>
+      </div>
+
+      <div class="ingredient-card reveal reveal-delay-3">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <polygon points="28,8 34,22 50,22 37,31 42,46 28,37 14,46 19,31 6,22 22,22" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.12)"/>
+            <polygon points="28,16 31,25 41,25 33,30 36,40 28,34 20,40 23,30 15,25 25,25" fill="rgba(200,165,91,0.08)" stroke="rgba(200,165,91,0.3)" stroke-width="0.5"/>
+          </svg>
+        </div>
+        <h3>Amber</h3>
+        <div class="origin">Gulf &amp; Baltic</div>
+        <p>Ancient resinous warmth with deep, honeyed notes that form the backbone of our most treasured blends.</p>
+      </div>
+
+      <div class="ingredient-card reveal">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <path d="M28 12 Q36 20 36 30 Q36 40 28 44 Q20 40 20 30 Q20 20 28 12Z" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.1)"/>
+            <path d="M28 20 Q32 25 32 30 Q32 36 28 38 Q24 36 24 30 Q24 25 28 20Z" fill="rgba(200,165,91,0.15)"/>
+            <path d="M28 44 L28 50 M24 50 L32 50" stroke="#C8A55B" stroke-width="1"/>
+          </svg>
+        </div>
+        <h3>White Musk</h3>
+        <div class="origin">Synthesized Pure</div>
+        <p>Clean, celestial, and skin-close — our white musk creates a luminous trail that lasts from morning to midnight.</p>
+      </div>
+
+      <div class="ingredient-card reveal reveal-delay-1">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <line x1="28" y1="44" x2="28" y2="50" stroke="#C8A55B" stroke-width="1"/>
+            <ellipse cx="28" cy="42" rx="8" ry="4" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.1)"/>
+            <path d="M20 42 L16 20 M36 42 L40 20" stroke="#C8A55B" stroke-width="0.8"/>
+            <path d="M28 20 C20 16, 14 20, 16 20 M28 20 C36 16, 42 20, 40 20" stroke="#C8A55B" stroke-width="0.8" fill="none"/>
+            <path d="M28 20 L28 10" stroke="rgba(200,165,91,0.5)" stroke-width="0.8"/>
+            <circle cx="28" cy="8" r="3" fill="rgba(200,165,91,0.3)" stroke="#C8A55B" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <h3>Frankincense</h3>
+        <div class="origin">Oman &amp; Somalia</div>
+        <p>The sacred resin of the Boswellia tree, offering a transcendent, crystalline smokiness revered for millennia.</p>
+      </div>
+
+      <div class="ingredient-card reveal reveal-delay-2">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <path d="M14 36 C18 28, 22 24, 28 20 C34 24, 38 28, 42 36" stroke="#C8A55B" stroke-width="1" fill="none"/>
+            <path d="M18 40 C22 30, 25 26, 28 22 C31 26, 34 30, 38 40" stroke="rgba(200,165,91,0.5)" stroke-width="0.8" fill="none"/>
+            <path d="M10 44 L46 44" stroke="#C8A55B" stroke-width="1"/>
+            <path d="M28 20 L28 12 M24 16 L28 12 L32 16" stroke="rgba(200,165,91,0.6)" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <h3>Saffron</h3>
+        <div class="origin">Kashmir &amp; Iran</div>
+        <p>Liquid gold from the mountains — lending rich, leathery warmth and a precious spice that transforms every formula.</p>
+      </div>
+
+      <div class="ingredient-card reveal reveal-delay-3">
+        <div class="ingredient-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <rect x="20" y="8" width="16" height="40" rx="2" stroke="#C8A55B" stroke-width="1" fill="rgba(200,165,91,0.08)"/>
+            <path d="M20 16 C24 14, 28 18, 32 16 C36 14, 38 16, 36 20 L20 20Z" fill="rgba(200,165,91,0.15)"/>
+            <path d="M20 28 C24 26, 28 30, 32 28 C36 26, 38 28, 36 32 L20 32Z" fill="rgba(200,165,91,0.12)"/>
+            <line x1="12" y1="48" x2="44" y2="48" stroke="rgba(200,165,91,0.5)" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <h3>Sandalwood</h3>
+        <div class="origin">Mysore, India</div>
+        <p>Creamy, meditative, and enduring — Mysore sandalwood is the soul of balance in our most beloved compositions.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED COLLECTIONS -->
+<section id="collections" style="padding-top:6rem;">
+  <div style="text-align:center;padding:0 4vw 5rem">
+    <span class="eyebrow reveal">Featured Collections</span>
+    <h2 class="reveal reveal-delay-1" style="font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--ivory)">The <em style="font-style:italic;color:var(--gold)">Art Gallery</em> of Fragrance</h2>
+  </div>
+</section>
+
+<!-- Panel 1: Royal Oud -->
+<div class="collection-panel">
+  <div class="collection-image">
+    <div class="collection-image-inner prod-royal" style="background-image: url('./images/royal-oud.png'); background-size: cover; background-position: center;">
+    </div>
+  </div>
+  <div class="collection-content reveal">
+    <span class="collection-number">01</span>
+    <span class="eyebrow">Signature Collection</span>
+    <h2>Royal Oud</h2>
+    <div class="collection-size">100ml · Eau de Parfum</div>
+    <p>Rich smoky oud from the forests of Assam, blended with Kashmiri saffron and Gulf amber. A fragrance of power, mystery, and ancient ceremony — worn by those who require no introduction.</p>
+    <div class="collection-price">AED 899 <span>Free delivery</span></div>
+    <div class="collection-actions">
+      <a href="#" class="btn btn-fill">Shop Now</a>
+      <a href="#" class="btn">Quick View</a>
+    </div>
+  </div>
+</div>
+
+<div class="collection-divider"></div>
+
+<!-- Panel 2: Majlis Gold -->
+<div class="collection-panel reverse">
+  <div class="collection-image">
+    <div class="collection-image-inner prod-majlis" style="background-image: url('./images/majlis-gold.png'); background-size: cover; background-position: center;">
+    </div>
+  </div>
+  <div class="collection-content reveal">
+    <span class="collection-number">02</span>
+    <span class="eyebrow">Private Reserve</span>
+    <h2>Majlis Gold</h2>
+    <div class="collection-size">75ml · Extrait de Parfum</div>
+    <p>A warm embrace of white musk and precious woods — sandalwood, oud, and Bornean camphor — that evokes the unhurried warmth of the traditional Arabian gathering room. Hospitality distilled.</p>
+    <div class="collection-price">AED 699 <span>Free delivery</span></div>
+    <div class="collection-actions">
+      <a href="#" class="btn btn-fill">Shop Now</a>
+      <a href="#" class="btn">Quick View</a>
+    </div>
+  </div>
+</div>
+
+<div class="collection-divider"></div>
+
+<!-- Panel 3: Desert Bloom -->
+<div class="collection-panel">
+  <div class="collection-image">
+    <div class="collection-image-inner prod-desert" style="background-image: url('./images/desert-bloom.png'); background-size: cover; background-position: center;">
+    </div>
+  </div>
+  <div class="collection-content reveal">
+    <span class="collection-number">03</span>
+    <span class="eyebrow">Garden Collection</span>
+    <h2>Desert Bloom</h2>
+    <div class="collection-size">100ml · Eau de Parfum</div>
+    <p>Taif rose and Gulf amber dancing across golden dunes. Delicate yet tenacious — like a wildflower that blooms in the world's most extreme beauty. The fragrance of sunrise over open desert.</p>
+    <div class="collection-price">AED 799 <span>Free delivery</span></div>
+    <div class="collection-actions">
+      <a href="#" class="btn btn-fill">Shop Now</a>
+      <a href="#" class="btn">Quick View</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PRODUCT CATALOGUE — ALL CATEGORIES             -->
+<!-- ══════════════════════════════════════════════════ -->
+
+<style>
+/* ── CATALOGUE SECTION ── */
+#catalogue {
+  padding: 8rem 4vw;
+  background: linear-gradient(180deg, var(--black) 0%, rgba(74,53,40,0.05) 50%, var(--black) 100%);
+}
+.catalogue-header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+.catalogue-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 300;
+  color: var(--ivory);
+  margin-bottom: 1rem;
+}
+.catalogue-header h2 em { font-style: italic; color: var(--gold); }
+.catalogue-header p {
+  font-size: 0.92rem;
+  color: var(--sand);
+  opacity: 0.7;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.9;
+}
+
+/* Category block */
+.cat-block {
+  max-width: 1400px;
+  margin: 0 auto 7rem;
+}
+.cat-block:last-child { margin-bottom: 0; }
+
+.cat-heading {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.cat-heading-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200,165,91,0.3), transparent);
+}
+.cat-heading-line.right {
+  background: linear-gradient(90deg, transparent, rgba(200,165,91,0.3));
+}
+.cat-title-wrap { text-align: center; }
+.cat-arabic {
+  display: block;
+  font-family: var(--arabic);
+  font-size: 0.8rem;
+  color: var(--gold);
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+.cat-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
+  color: var(--ivory);
+  letter-spacing: 0.04em;
+}
+.cat-title em { font-style: italic; color: var(--gold); }
+.cat-count {
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sand);
+  opacity: 0.5;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* Product grid */
+.prod-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.prod-grid-7 { grid-template-columns: repeat(7, 1fr); }
+.prod-grid-5 { grid-template-columns: repeat(5, 1fr); }
+.prod-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.prod-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Individual product tile */
+.prod-tile {
+  position: relative;
+  border: 1px solid rgba(200,165,91,0.1);
+  background: rgba(255,255,255,0.015);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.4s, transform 0.4s;
+}
+.prod-tile:hover {
+  border-color: rgba(200,165,91,0.35);
+  transform: translateY(-4px);
+}
+.prod-tile-img {
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.prod-tile-img-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.prod-tile:hover .prod-tile-img-inner { transform: scale(1.06); }
+
+/* CSS bottle for each product */
+.mini-bottle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 10px 30px rgba(200,165,91,0.3));
+}
+.mini-cap {
+  width: 26px; height: 10px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(135deg, #E2C47A, #C8A55B);
+}
+.mini-neck {
+  width: 14px; height: 9px;
+  background: linear-gradient(180deg, #D4B468, #C8A55B);
+}
+.mini-collar {
+  width: 30px; height: 3px;
+  background: var(--gold);
+}
+.mini-body {
+  width: 42px; height: 70px;
+  border-radius: 2px 2px 4px 4px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.mini-glow {
+  position: absolute;
+  bottom: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 32px; height: 14px;
+  border-radius: 50%;
+  filter: blur(6px);
+}
+.mini-label-text {
+  font-family: var(--serif);
+  font-size: 0.38rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.65);
+  text-align: center;
+  line-height: 1.3;
+  padding: 0 3px;
+}
+
+/* Smoke animation on tile hover */
+.prod-tile-smoke {
+  position: absolute;
+  top: 10%; left: 50%;
+  transform: translateX(-50%);
+  width: 2px; height: 40px;
+  background: linear-gradient(180deg, transparent, rgba(200,165,91,0.3));
+  filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: microSmoke 3s ease-in-out infinite;
+}
+.prod-tile:hover .prod-tile-smoke { opacity: 1; }
+@keyframes microSmoke {
+  0%, 100% { transform: translateX(-50%) scaleX(1); }
+  50% { transform: translateX(-50%) scaleX(2) translateY(-5px); }
+}
+
+/* Overlay on hover */
+.prod-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0);
+  transition: background 0.4s;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 1.5rem;
+}
+.prod-tile:hover .prod-tile-overlay { background: rgba(10,10,10,0.45); }
+.prod-tile-add {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--ivory);
+  color: var(--ivory);
+  background: transparent;
+  cursor: pointer;
+}
+.prod-tile:hover .prod-tile-add { opacity: 1; transform: translateY(0); }
+.prod-tile-add:hover { background: var(--ivory); color: var(--black); }
+
+/* Badge */
+.prod-tile-badge {
+  position: absolute;
+  top: 0.7rem; left: 0.7rem;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 0.2rem 0.5rem;
+}
+
+/* Tile info */
+.prod-tile-info {
+  padding: 1rem 1rem 1.2rem;
+  border-top: 1px solid rgba(200,165,91,0.08);
+}
+.prod-tile-num {
+  font-family: var(--serif);
+  font-size: 0.6rem;
+  color: rgba(200,165,91,0.35);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.prod-tile-name {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+.prod-tile-sub {
+  font-size: 0.62rem;
+  color: var(--sand);
+  opacity: 0.55;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Perfume special tile (wider) */
+.prod-tile-perfume .mini-body { width: 38px; height: 80px; border-radius: 6px 6px 4px 4px; }
+.prod-tile-perfume .mini-cap { width: 20px; height: 12px; border-radius: 50% 50% 0 0; }
+.prod-tile-perfume .mini-neck { width: 10px; height: 14px; border-radius: 1px; }
+
+/* Bakhoor tile — shorter wider vessel */
+.bakhoor-vessel {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  filter: drop-shadow(0 8px 20px rgba(200,165,91,0.25));
+}
+.bakhoor-lid {
+  width: 50px; height: 8px;
+  background: linear-gradient(135deg, #C8A55B, #A07830);
+  border-radius: 2px 2px 0 0;
+}
+.bakhoor-bowl {
+  width: 60px; height: 32px;
+  background: linear-gradient(135deg, rgba(74,53,40,0.9), rgba(107,79,58,0.7), rgba(74,53,40,0.85));
+  border-radius: 0 0 30px 30px;
+  border: 1px solid rgba(200,165,91,0.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.bakhoor-base {
+  width: 44px; height: 8px;
+  background: linear-gradient(135deg, #C8A55B, #A07830);
+  border-radius: 0 0 2px 2px;
+}
+.bakhoor-smoke {
+  position: absolute;
+  top: -30px; left: 50%;
+  transform: translateX(-50%);
+  width: 2px; height: 30px;
+  background: linear-gradient(180deg, transparent, rgba(200,165,91,0.5));
+  filter: blur(3px);
+  animation: microSmoke 2.5s ease-in-out infinite;
+}
+
+/* Attar tile — round dropper bottle */
+.attar-bottle {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  filter: drop-shadow(0 8px 20px rgba(200,165,91,0.3));
+}
+.attar-dropper {
+  width: 6px; height: 18px;
+  background: linear-gradient(180deg, rgba(200,165,91,0.8), rgba(200,165,91,0.3));
+  margin-bottom: 0;
+  border-radius: 3px 3px 0 0;
+}
+.attar-cap {
+  width: 18px; height: 6px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+.attar-neck {
+  width: 10px; height: 10px;
+  background: linear-gradient(180deg, rgba(200,165,91,0.7), rgba(200,165,91,0.4));
+}
+.attar-round {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(200,165,91,0.4);
+}
+
+/* Incense tile — stick display */
+.incense-display {
+  position: relative;
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: 5px;
+  height: 90px;
+}
+.incense-stick {
+  width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, rgba(200,165,91,0.2), rgba(74,53,40,0.8));
+}
+.incense-tip {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(200,165,91,0.7);
+  box-shadow: 0 0 8px rgba(200,165,91,0.5);
+  position: absolute;
+  top: 0;
+  animation: tipGlow 2s ease-in-out infinite alternate;
+}
+@keyframes tipGlow {
+  0% { box-shadow: 0 0 6px rgba(200,165,91,0.4); }
+  100% { box-shadow: 0 0 14px rgba(200,165,91,0.8); }
+}
+.incense-holder {
+  width: 60px; height: 8px;
+  background: linear-gradient(135deg, rgba(74,53,40,0.8), rgba(107,79,58,0.6));
+  border-radius: 2px;
+  position: absolute; bottom: 0;
+  border: 1px solid rgba(200,165,91,0.2);
+}
+
+/* Dhehnal — oil bottle */
+.oil-bottle {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  filter: drop-shadow(0 8px 20px rgba(200,165,91,0.3));
+}
+.oil-stopper {
+  width: 12px; height: 14px;
+  background: linear-gradient(135deg, #E2C47A, #C8A55B);
+  border-radius: 50% 50% 0 0;
+}
+.oil-collar {
+  width: 22px; height: 4px;
+  background: var(--gold);
+}
+.oil-shoulder {
+  width: 22px; height: 14px;
+  background: linear-gradient(180deg, rgba(200,165,91,0.4), transparent);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+.oil-body {
+  width: 36px; height: 52px;
+  border-radius: 0 0 6px 6px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+
+/* Colour palette variables for different categories */
+.c-oud { background: linear-gradient(135deg, rgba(200,165,91,0.85), rgba(160,120,50,0.6), rgba(200,165,91,0.8)); }
+.c-oud-glow { background: rgba(200,165,91,0.45); }
+.c-oud-bg { background: linear-gradient(135deg, #1E1408, #2C1D0A, #4A3018); }
+
+.c-perfume { background: linear-gradient(135deg, rgba(107,58,112,0.8), rgba(160,80,160,0.5), rgba(107,58,112,0.75)); }
+.c-perfume-glow { background: rgba(107,58,112,0.5); }
+.c-perfume-bg { background: linear-gradient(135deg, #1A0D1A, #2C1A2E, #3D2240); }
+
+.c-dhehnal { background: linear-gradient(135deg, rgba(21,61,53,0.95), rgba(200,165,91,0.25), rgba(21,61,53,0.9)); border: 1px solid rgba(200,165,91,0.3); }
+.c-dhehnal-glow { background: rgba(21,61,53,0.6); }
+.c-dhehnal-bg { background: linear-gradient(135deg, #060D08, #102818, #153D35); }
+
+.c-bakhoor { background: linear-gradient(135deg, rgba(107,79,58,0.9), rgba(200,165,91,0.2), rgba(74,53,40,0.85)); }
+.c-bakhoor-bg { background: linear-gradient(135deg, #1A0F07, #2C1D0A, #3D2510); }
+
+.c-attar { background: linear-gradient(135deg, rgba(139,82,60,0.85), rgba(200,165,91,0.3), rgba(107,58,40,0.8)); }
+.c-attar-bg { background: linear-gradient(135deg, #1A0D0A, #2C1808, #4A2C12); }
+
+.c-incense { background: linear-gradient(135deg, rgba(60,60,80,0.8), rgba(200,165,91,0.2), rgba(40,40,60,0.75)); }
+.c-incense-bg { background: linear-gradient(135deg, #0A0A12, #141420, #1C1C2C); }
+
+/* Responsive catalogue */
+@media (max-width: 1200px) {
+  .prod-grid-7 { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 1024px) {
+  .prod-grid-7 { grid-template-columns: repeat(4, 1fr); }
+  .prod-grid-5 { grid-template-columns: repeat(3, 1fr); }
+  .prod-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .prod-grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .prod-grid-7, .prod-grid-5, .prod-grid-4, .prod-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .prod-grid-7, .prod-grid-5, .prod-grid-4, .prod-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+<section id="catalogue">
+  <div class="catalogue-header">
+    <span class="eyebrow reveal" style="display:block;">Our Complete Range</span>
+    <h2 class="reveal reveal-delay-1">The Full <em>Collection</em></h2>
+    <div class="divider center reveal reveal-delay-2"></div>
+    <p class="reveal reveal-delay-2">Six categories of Arabian luxury — each crafted with the finest ingredients, each carrying a heritage of centuries.</p>
+  </div>
+
+  <!-- ── 1. OUD ── -->
+  <div class="cat-block">
+    <div class="cat-heading reveal">
+      <div class="cat-heading-line"></div>
+      <div class="cat-title-wrap">
+        <span class="cat-arabic">مجموعة العود</span>
+        <div class="cat-title"><em>Oud</em> Collection</div>
+        <span class="cat-count">7 Fragrances</span>
+      </div>
+      <div class="cat-heading-line right"></div>
+    </div>
+    <div class="prod-grid prod-grid-7">
+
+      <!-- Zura -->
+      <div class="prod-tile reveal">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-zura.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge">Signature</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">01</span>
+          <div class="prod-tile-name">Zura</div>
+          <div class="prod-tile-sub">Deep · Woody · Resinous</div>
+        </div>
+      </div>
+
+      <!-- Muri -->
+      <div class="prod-tile reveal reveal-delay-1">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-muri.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">02</span>
+          <div class="prod-tile-name">Muri</div>
+          <div class="prod-tile-sub">Warm · Spiced · Ancient</div>
+        </div>
+      </div>
+
+      <!-- Zella -->
+      <div class="prod-tile reveal reveal-delay-2">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-zella.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">03</span>
+          <div class="prod-tile-name">Zella</div>
+          <div class="prod-tile-sub">Light · Floral · Elegant</div>
+        </div>
+      </div>
+
+      <!-- Chichod -->
+      <div class="prod-tile reveal reveal-delay-3">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-chichod.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:var(--emerald);color:var(--ivory)">Rare</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">04</span>
+          <div class="prod-tile-name">Chichod</div>
+          <div class="prod-tile-sub">Bold · Dark · Smoky</div>
+        </div>
+      </div>
+
+      <!-- Shem -->
+      <div class="prod-tile reveal reveal-delay-4">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-shem.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">05</span>
+          <div class="prod-tile-name">Shem</div>
+          <div class="prod-tile-sub">Fresh · Aquatic · Crisp</div>
+        </div>
+      </div>
+
+      <!-- Underwater -->
+      <div class="prod-tile reveal reveal-delay-1">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-underwater.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:#1A4080;color:#A0C8F0">New</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">06</span>
+          <div class="prod-tile-name">Underwater</div>
+          <div class="prod-tile-sub">Deep Blue · Marine · Oud</div>
+        </div>
+      </div>
+
+      <!-- Chad -->
+      <div class="prod-tile reveal reveal-delay-2">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background:linear-gradient(135deg,#0A0C0A,#101810,#182818)">
+            <div class="prod-tile-smoke"></div>
+            <div class="mini-bottle">
+              <div class="mini-cap" style="background:linear-gradient(135deg,#60A860,#408048)"></div>
+              <div class="mini-neck" style="background:linear-gradient(180deg,#58A058,#387840)"></div>
+              <div class="mini-collar" style="background:linear-gradient(180deg,#C8A55B,#A07830)"></div>
+              <div class="mini-body" style="background:linear-gradient(135deg,rgba(80,150,80,0.8),rgba(200,165,91,0.2),rgba(60,120,60,0.75))"><span class="mini-label-text" style="color:rgba(220,255,220,0.75)">CHAD</span></div>
+              <div class="mini-glow" style="background:rgba(80,150,80,0.4)"></div>
+            </div>
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">07</span>
+          <div class="prod-tile-name">Chad</div>
+          <div class="prod-tile-sub">Green · Earthy · Forest</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 2. PERFUMES ── -->
+  <div class="cat-block">
+    <div class="cat-heading reveal">
+      <div class="cat-heading-line"></div>
+      <div class="cat-title-wrap">
+        <span class="cat-arabic">العطور الفاخرة</span>
+        <div class="cat-title"><em>Perfumes</em></div>
+        <span class="cat-count">5 Scents</span>
+      </div>
+      <div class="cat-heading-line right"></div>
+    </div>
+    <div class="prod-grid prod-grid-5">
+
+      <!-- Perfume 1 -->
+      <div class="prod-tile prod-tile-perfume reveal">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner c-perfume-bg" style="background-image: url('./images/perfume-no1.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:#6B3A70;color:#F0D0F8">Bestseller</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">01</span>
+          <div class="prod-tile-name">Perfume No. 1</div>
+          <div class="prod-tile-sub">Floral · Violet · Musk</div>
+        </div>
+      </div>
+
+      <!-- Perfume 2 -->
+      <div class="prod-tile prod-tile-perfume reveal reveal-delay-1">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/perfume-no2.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">02</span>
+          <div class="prod-tile-name">Perfume No. 2</div>
+          <div class="prod-tile-sub">Oriental · Amber · Spice</div>
+        </div>
+      </div>
+
+      <!-- Perfume 3 -->
+      <div class="prod-tile prod-tile-perfume reveal reveal-delay-2">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/perfume-no3.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">03</span>
+          <div class="prod-tile-name">Perfume No. 3</div>
+          <div class="prod-tile-sub">Rose · Saffron · Oud</div>
+        </div>
+      </div>
+
+      <!-- Perfume 4 -->
+      <div class="prod-tile prod-tile-perfume reveal reveal-delay-3">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-shem.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:var(--emerald);color:var(--ivory)">New</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">04</span>
+          <div class="prod-tile-name">Perfume No. 4</div>
+          <div class="prod-tile-sub">Woody · Sandalwood · Musk</div>
+        </div>
+      </div>
+
+      <!-- Perfume 5 -->
+      <div class="prod-tile prod-tile-perfume reveal reveal-delay-4">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/royal-oud.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">05</span>
+          <div class="prod-tile-name">Perfume No. 5</div>
+          <div class="prod-tile-sub">Gold · Vanilla · Amber</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 3. DHEHNAL OUD ── -->
+  <div class="cat-block">
+    <div class="cat-heading reveal">
+      <div class="cat-heading-line"></div>
+      <div class="cat-title-wrap">
+        <span class="cat-arabic">دهن العود الخام</span>
+        <div class="cat-title"><em>Dhehnal</em> Oudh</div>
+        <span class="cat-count">5 Pure Oils</span>
+      </div>
+      <div class="cat-heading-line right"></div>
+    </div>
+    <div class="prod-grid prod-grid-5">
+
+      <!-- Indian -->
+      <div class="prod-tile reveal">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner c-dhehnal-bg" style="background-image: url('./images/oud-zura.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:var(--emerald);color:var(--ivory)">Premium</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">01</span>
+          <div class="prod-tile-name">Indian</div>
+          <div class="prod-tile-sub">Assam · Pure Oil · Rich</div>
+        </div>
+      </div>
+
+      <!-- Kalimanthan -->
+      <div class="prod-tile reveal reveal-delay-1">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/majlis-gold.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">02</span>
+          <div class="prod-tile-name">Kalimanthan</div>
+          <div class="prod-tile-sub">Borneo · Camphor · Sweet</div>
+        </div>
+      </div>
+
+      <!-- Thrath -->
+      <div class="prod-tile reveal reveal-delay-2">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-chichod.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">03</span>
+          <div class="prod-tile-name">Thrath</div>
+          <div class="prod-tile-sub">Cambodian · Smooth · Rare</div>
+        </div>
+      </div>
+
+      <!-- Lavosi -->
+      <div class="prod-tile reveal reveal-delay-3">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-shem.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:var(--emerald);color:var(--ivory)">New</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">04</span>
+          <div class="prod-tile-name">Lavosi</div>
+          <div class="prod-tile-sub">Floral · Lavender · Soft</div>
+        </div>
+      </div>
+
+      <!-- Prachi -->
+      <div class="prod-tile reveal reveal-delay-4">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="background-image: url('./images/oud-muri.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">05</span>
+          <div class="prod-tile-name">Prachi</div>
+          <div class="prod-tile-sub">Golden · Oriental · Warm</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 4. BAKHOOR ── -->
+  <div class="cat-block">
+    <div class="cat-heading reveal">
+      <div class="cat-heading-line"></div>
+      <div class="cat-title-wrap">
+        <span class="cat-arabic">بخور عربي فاخر</span>
+        <div class="cat-title"><em>Bakhoor</em></div>
+        <span class="cat-count">3 Forms</span>
+      </div>
+      <div class="cat-heading-line right"></div>
+    </div>
+    <div class="prod-grid prod-grid-3">
+
+      <!-- Digga -->
+      <div class="prod-tile reveal">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner c-bakhoor-bg" style="min-height:260px; background-image: url('./images/bakhoor-digga.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge">Artisan</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">01</span>
+          <div class="prod-tile-name">Digga</div>
+          <div class="prod-tile-sub">Traditional Bakhoor · Earthy Oud</div>
+        </div>
+      </div>
+
+      <!-- Powder Type -->
+      <div class="prod-tile reveal reveal-delay-1">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:260px; background-image: url('./images/bakhoor-powder.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">02</span>
+          <div class="prod-tile-name">Powder Type</div>
+          <div class="prod-tile-sub">Fine Powder · Long Burn</div>
+        </div>
+      </div>
+
+      <!-- Coins Type -->
+      <div class="prod-tile reveal reveal-delay-2">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:260px; background-image: url('./images/bakhoor-coins.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:var(--emerald);color:var(--ivory)">New</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">03</span>
+          <div class="prod-tile-name">Coins Type</div>
+          <div class="prod-tile-sub">Pressed Discs · Slow Release</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 5. ATTAR ── -->
+  <div class="cat-block">
+    <div class="cat-heading reveal">
+      <div class="cat-heading-line"></div>
+      <div class="cat-title-wrap">
+        <span class="cat-arabic">عطر زيتي طبيعي</span>
+        <div class="cat-title"><em>Attar</em></div>
+        <span class="cat-count">3 Blends</span>
+      </div>
+      <div class="cat-heading-line right"></div>
+    </div>
+    <div class="prod-grid prod-grid-3">
+
+      <!-- Mukallath -->
+      <div class="prod-tile reveal">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner c-attar-bg" style="min-height:260px; background-image: url('./images/oud-zella.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge">Blend</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">01</span>
+          <div class="prod-tile-name">Mukallath</div>
+          <div class="prod-tile-sub">Mixed Flowers · Warm Spice</div>
+        </div>
+      </div>
+
+      <!-- Gaith -->
+      <div class="prod-tile reveal reveal-delay-1">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:260px; background-image: url('./images/oud-underwater.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:var(--emerald);color:var(--ivory)">New</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">02</span>
+          <div class="prod-tile-name">Gaith</div>
+          <div class="prod-tile-sub">Rain · Fresh · Earthy Musk</div>
+        </div>
+      </div>
+
+      <!-- Kiswa -->
+      <div class="prod-tile reveal reveal-delay-2">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:260px; background-image: url('./images/oud-zura.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add">Add to Cart</button></div>
+          <span class="prod-tile-badge" style="background:#1A1A1A;color:var(--gold);border:1px solid var(--gold)">Limited</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">03</span>
+          <div class="prod-tile-name">Kiswa</div>
+          <div class="prod-tile-sub">Sacred · Black Oud · Holy</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 6. INCENSE / FRAGRANCE PRODUCTS ── -->
+  <div class="cat-block">
+    <div class="cat-heading reveal">
+      <div class="cat-heading-line"></div>
+      <div class="cat-title-wrap">
+        <span class="cat-arabic">البخور والمنتجات العطرية</span>
+        <div class="cat-title"><em>Incense</em> &amp; Fragrance</div>
+        <span class="cat-count">Coming Soon</span>
+      </div>
+      <div class="cat-heading-line right"></div>
+    </div>
+    <div class="prod-grid prod-grid-4">
+
+      <!-- Incense Sticks -->
+      <div class="prod-tile reveal" style="opacity:0.7">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner c-incense-bg" style="min-height:200px; background-image: url('./images/bakhoor-digga.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add" style="font-size:0.5rem;padding:0.4rem 1rem">Coming Soon</button></div>
+          <span class="prod-tile-badge" style="background:rgba(200,165,91,0.15);color:var(--gold);border:1px solid rgba(200,165,91,0.3)">Soon</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">01</span>
+          <div class="prod-tile-name">Incense Sticks</div>
+          <div class="prod-tile-sub">Oud · Frankincense</div>
+        </div>
+      </div>
+
+      <!-- Room Spray -->
+      <div class="prod-tile reveal reveal-delay-1" style="opacity:0.7">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:200px; background-image: url('./images/oud-underwater.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add" style="font-size:0.5rem;padding:0.4rem 1rem">Coming Soon</button></div>
+          <span class="prod-tile-badge" style="background:rgba(200,165,91,0.15);color:var(--gold);border:1px solid rgba(200,165,91,0.3)">Soon</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">02</span>
+          <div class="prod-tile-name">Room Spray</div>
+          <div class="prod-tile-sub">Home · Ambient Scent</div>
+        </div>
+      </div>
+
+      <!-- Diffuser -->
+      <div class="prod-tile reveal reveal-delay-2" style="opacity:0.7">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:200px; background-image: url('./images/oud-zura.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add" style="font-size:0.5rem;padding:0.4rem 1rem">Coming Soon</button></div>
+          <span class="prod-tile-badge" style="background:rgba(200,165,91,0.15);color:var(--gold);border:1px solid rgba(200,165,91,0.3)">Soon</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">03</span>
+          <div class="prod-tile-name">Reed Diffuser</div>
+          <div class="prod-tile-sub">Long-lasting · Subtle</div>
+        </div>
+      </div>
+
+      <!-- Candle -->
+      <div class="prod-tile reveal reveal-delay-3" style="opacity:0.7">
+        <div class="prod-tile-img">
+          <div class="prod-tile-img-inner" style="min-height:200px; background-image: url('./images/bakhoor-powder.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="prod-tile-overlay"><button class="prod-tile-add" style="font-size:0.5rem;padding:0.4rem 1rem">Coming Soon</button></div>
+          <span class="prod-tile-badge" style="background:rgba(200,165,91,0.15);color:var(--gold);border:1px solid rgba(200,165,91,0.3)">Soon</span>
+        </div>
+        <div class="prod-tile-info">
+          <span class="prod-tile-num">04</span>
+          <div class="prod-tile-name">Luxury Candle</div>
+          <div class="prod-tile-sub">Oud Wax · Scented</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center;display:block;">The Razzal Fragrance Promise</span>
+    <h2 class="reveal reveal-delay-1">Why the World Chooses <em>Us</em></h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1" width="44" height="44">
+            <path d="M22 4 L26 14 L38 14 L28 22 L32 34 L22 26 L12 34 L16 22 L6 14 L18 14 Z"/>
+            <circle cx="22" cy="22" r="6" stroke-width="0.5"/>
+          </svg>
+        </div>
+        <h3>100% Authentic Ingredients</h3>
+        <p>Every raw material is personally sourced from its origin — no synthetic substitutes, no shortcuts. Purity is our non-negotiable standard.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1" width="44" height="44">
+            <path d="M22 8 C30 8, 38 14, 38 24 C38 34, 30 40, 22 40 C14 40, 6 34, 6 24 C6 14, 14 8, 22 8Z"/>
+            <path d="M22 8 L22 4 M18 5 L22 8 L26 5"/>
+            <path d="M14 20 L20 26 L30 16" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>Handcrafted in UAE</h3>
+        <p>Our perfumers work in our Dubai atelier, blending by hand and trusting instinct and tradition above industrial production.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1" width="44" height="44">
+            <circle cx="22" cy="22" r="16"/>
+            <path d="M22 6 L22 22 L32 28"/>
+            <path d="M6 22 Q14 10, 22 22 Q30 34, 38 22" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <h3>International Shipping</h3>
+        <p>Delivering to over 80 countries. Every order is carefully packaged to arrive as a gift, worthy of what lies within.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1" width="44" height="44">
+            <path d="M10 10 H34 V38 H10 Z" rx="1"/>
+            <path d="M16 10 V6 Q16 4, 18 4 H26 Q28 4, 28 6 V10"/>
+            <path d="M14 20 H30 M14 26 H26"/>
+            <path d="M22 32 L24 34 L28 29" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3>Luxury Gift Packaging</h3>
+        <p>Every bottle is nestled in hand-stitched suede, presented in lacquered boxes with calligraphy seals and ribbon closure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section id="bestsellers">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center;display:block;">Most Coveted</span>
+    <h2 class="reveal reveal-delay-1">Best <em>Sellers</em></h2>
+    <div class="bestsellers-track">
+
+      <!-- Product 1 -->
+      <div class="product-card reveal">
+        <div class="product-card-image">
+          <div class="product-card-bg" style="background-image: url('./images/royal-oud.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="product-overlay">
+            <button class="quick-add">Add to Cart</button>
+          </div>
+          <button class="product-wish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <span class="product-badge">Best Seller</span>
+        </div>
+        <div class="product-info">
+          <h3>Royal Oud</h3>
+          <div class="prod-desc">Smoky oud · Saffron · Amber</div>
+          <div class="product-stars">
+            <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
+            <span class="review-count">(284)</span>
+          </div>
+          <div class="product-price">AED 899</div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-card-image">
+          <div class="product-card-bg" style="background-image: url('./images/majlis-gold.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="product-overlay">
+            <button class="quick-add">Add to Cart</button>
+          </div>
+          <button class="product-wish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="product-info">
+          <h3>Majlis Gold</h3>
+          <div class="prod-desc">White Musk · Sandalwood · Oud</div>
+          <div class="product-stars">
+            <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
+            <span class="review-count">(197)</span>
+          </div>
+          <div class="product-price">AED 699</div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-card-image">
+          <div class="product-card-bg" style="background-image: url('./images/desert-bloom.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="product-overlay">
+            <button class="quick-add">Add to Cart</button>
+          </div>
+          <button class="product-wish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <span class="product-badge" style="background:var(--emerald);color:var(--ivory)">New</span>
+        </div>
+        <div class="product-info">
+          <h3>Desert Bloom</h3>
+          <div class="prod-desc">Taif Rose · Amber · Musk</div>
+          <div class="product-stars">
+            <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
+            <span class="review-count">(156)</span>
+          </div>
+          <div class="product-price">AED 799</div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-card-image">
+          <div class="product-card-bg" style="background:linear-gradient(135deg,#1A0D1A,#2C1A2E,#6B3A70,#2C1A2E,#0D0A10)">
+            <div style="width:56px;height:120px;position:relative">
+              <div style="width:38px;height:16px;background:linear-gradient(135deg,#8B5A90,#6B3A70);border-radius:2px 2px 0 0;margin:0 auto"></div>
+              <div style="width:20px;height:14px;background:#7A4A80;margin:0 auto"></div>
+              <div style="width:44px;height:4px;background:var(--gold);margin:0 auto"></div>
+              <div style="width:56px;height:86px;background:linear-gradient(135deg,rgba(107,58,112,0.8),rgba(200,165,91,0.2),rgba(107,58,112,0.7));border-radius:2px 2px 4px 4px;border:1px solid rgba(200,165,91,0.2);box-shadow:0 0 30px rgba(107,58,112,0.4)"></div>
+            </div>
+          </div>
+          <div class="product-overlay">
+            <button class="quick-add">Add to Cart</button>
+          </div>
+          <button class="product-wish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="product-info">
+          <h3>Violet Nights</h3>
+          <div class="prod-desc">Frankincense · Violet · Oud</div>
+          <div class="product-stars">
+            <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon" style="color:rgba(200,165,91,0.4)">★</span>
+            <span class="review-count">(89)</span>
+          </div>
+          <div class="product-price">AED 750</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ART OF PERFUMERY -->
+<section id="art">
+  <div class="art-bg">
+    <div class="art-pattern"></div>
+    <div class="art-content reveal">
+      <span class="eyebrow" style="text-align:center;display:block;">The Process</span>
+      <h2>The <em>Art</em> of<br>Perfumery</h2>
+      <p>From a single drop of rain on ancient oud wood to the moment a bottle is sealed with wax — our process honours every step. No machine can replicate the judgment of a master perfumer who has given forty years to the craft of smell.</p>
+      <div class="art-steps">
+        <div class="art-step">
+          <div class="art-step-num">I</div>
+          <div class="art-step-label">Sourcing</div>
+        </div>
+        <div class="art-step">
+          <div class="art-step-num">II</div>
+          <div class="art-step-label">Distillation</div>
+        </div>
+        <div class="art-step">
+          <div class="art-step-num">III</div>
+          <div class="art-step-label">Blending</div>
+        </div>
+        <div class="art-step">
+          <div class="art-step-num">IV</div>
+          <div class="art-step-label">Aging</div>
+        </div>
+        <div class="art-step">
+          <div class="art-step-num">V</div>
+          <div class="art-step-label">Bottling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center;display:block;">Voices of Our Clientele</span>
+    <h2 class="reveal reveal-delay-1">What Our Patrons <em>Say</em></h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial reveal">
+        <span class="quote-mark">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p>Royal Oud is the finest oud I have worn in thirty years. The depth, the evolution, the way it changes across hours — this is not perfumery, this is poetry written on skin.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">K</div>
+          <div class="author-info">
+            <span>Khalid Al Rashidi</span>
+            <small>Dubai, UAE · Verified Buyer</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal reveal-delay-1">
+        <span class="quote-mark">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p>I gifted Desert Bloom to my wife for our anniversary. She has worn it every day for six months. It is impossible to overstate how beautiful this fragrance is — truly world class.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <span>Abdulrahman Al Mansoori</span>
+            <small>Abu Dhabi, UAE · Verified Buyer</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal reveal-delay-2">
+        <span class="quote-mark">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p>I have purchased from Amouage, Roja, and Tom Ford. Razzal Fragrance belongs in that conversation. Majlis Gold is nothing short of extraordinary — warm, intimate, and impossibly elegant.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info">
+            <span>Sophia Laurent</span>
+            <small>Paris, France · Verified Buyer</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAJLIS EXPERIENCE -->
+<section id="majlis">
+  <div class="majlis-bg"></div>
+  <div class="majlis-arch"></div>
+  <div class="lantern lantern-1"></div>
+  <div class="lantern lantern-2"></div>
+  <div class="lantern lantern-3"></div>
+  <div class="majlis-pattern"></div>
+  <div class="majlis-vignette"></div>
+  <div class="majlis-content reveal">
+    <span class="arabic-decoration">المجلس</span>
+    <span class="eyebrow" style="text-align:center;display:block;">The Majlis Experience</span>
+    <h2>Every fragrance tells a story of <em>hospitality</em>, heritage and timeless Arabian elegance</h2>
+    <p>In the Arab world, scent is the language of welcome. A host burns oud before guests arrive. Rose water is poured over hands. Incense circulates through the room — a gesture that says: you are seen, you are honoured, you belong here. Our fragrances carry this spirit into every moment of modern life.</p>
+    <a href="#collections" class="btn">Experience the Collection</a>
+  </div>
+</section>
+
+<!-- GIFTING -->
+<section id="gifting">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center;display:block;">The Art of Giving</span>
+    <h2 class="reveal reveal-delay-1">Luxury <em>Gifting</em></h2>
+    <div class="gifts-grid">
+
+      <div class="gift-card gift-card-main reveal">
+        <div class="gift-image gift-bg-wedding">
+          <span class="gift-icon-large">💍</span>
+        </div>
+        <div class="gift-info">
+          <h3>Wedding Collections</h3>
+          <p>Bespoke fragrance sets for weddings and betrothals. Custom engraving, gold foil initials, and hand-stitched presentation cases. Our wedding concierge creates a scented memory that endures a lifetime.</p>
+          <a href="#" class="btn" style="margin-top:1.2rem;font-size:0.62rem">Explore Wedding Gifts</a>
+        </div>
+      </div>
+
+      <div class="gift-card reveal reveal-delay-1">
+        <div class="gift-image gift-bg-corp">
+          <span class="gift-icon-large" style="font-size:2.5rem">🏛</span>
+        </div>
+        <div class="gift-info">
+          <h3>Corporate Gifts</h3>
+          <p>Impress partners and delegates with co-branded luxury sets.</p>
+        </div>
+      </div>
+
+      <div class="gift-card reveal reveal-delay-2">
+        <div class="gift-image gift-bg-ramadan">
+          <span class="gift-icon-large" style="font-size:2.5rem">🌙</span>
+        </div>
+        <div class="gift-info">
+          <h3>Ramadan Edition</h3>
+          <p>Limited edition sets released for the Holy Month each year.</p>
+        </div>
+      </div>
+
+      <div class="gift-card reveal reveal-delay-1">
+        <div class="gift-image gift-bg-eid">
+          <span class="gift-icon-large" style="font-size:2.5rem">✨</span>
+        </div>
+        <div class="gift-info">
+          <h3>Eid Collections</h3>
+          <p>Special Eid Al-Fitr and Eid Al-Adha presentation boxes.</p>
+        </div>
+      </div>
+
+      <div class="gift-card reveal reveal-delay-2">
+        <div class="gift-image gift-bg-custom">
+          <span class="gift-icon-large" style="font-size:2.5rem">✒</span>
+        </div>
+        <div class="gift-info">
+          <h3>Custom Engraving</h3>
+          <p>Personalise any bottle with Arabic or Roman calligraphy.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM GALLERY -->
+<section id="instagram">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="text-align:center;display:block;">Lifestyle Gallery</span>
+    <h2 class="reveal reveal-delay-1">Follow the <em>Journey</em></h2>
+    <div class="insta-handle reveal reveal-delay-2">@razzalFragrance</div>
+    <div class="insta-grid reveal">
+      <div class="insta-item"><div class="insta-image insta-c1" style="background-image: url('./images/insta-1.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c2" style="background-image: url('./images/oud-zura.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c3" style="background-image: url('./images/bakhoor-digga.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c4" style="background-image: url('./images/oud-muri.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c5" style="background-image: url('./images/oud-zella.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c6" style="background-image: url('./images/bakhoor-powder.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c7" style="background-image: url('./images/oud-chichod.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+      <div class="insta-item"><div class="insta-image insta-c8" style="background-image: url('./images/oud-underwater.png'); background-size: cover; background-position: center;"></div><div class="insta-overlay"><span class="insta-heart">♡</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <span class="newsletter-arabic reveal">اشترك في نشرتنا البريدية</span>
+  <h2 class="reveal reveal-delay-1">Become Part of<br><em>Our Legacy</em></h2>
+  <p class="reveal reveal-delay-2">Join our inner circle. First access to new launches, private events, and the art of Arabian perfumery — delivered to your inbox.</p>
+  <div class="newsletter-form reveal reveal-delay-3">
+    <input type="email" placeholder="Your email address">
+    <button type="button">Join the Circle</button>
+  </div>
+  <p class="newsletter-note reveal reveal-delay-4">By subscribing you agree to our Privacy Policy. Unsubscribe at any time.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">RAZZAL FRAGRANCE<span class="arabic-sub">عطور رزال</span></a>
+      <p>Founded in Dubai, 1976. A house of exceptional Arabian fragrances, crafted for those who carry the world with grace and leave a trail others remember.</p>
+      <div class="footer-social">
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">TW</a>
+        <a href="#" class="social-link">FB</a>
+        <a href="#" class="social-link">YT</a>
+        <a href="#" class="social-link">TK</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#">Royal Oud</a></li>
+        <li><a href="#">Majlis Gold</a></li>
+        <li><a href="#">Desert Bloom</a></li>
+        <li><a href="#">Violet Nights</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Limited Editions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>The House</h4>
+      <ul>
+        <li><a href="#">Our Heritage</a></li>
+        <li><a href="#">Master Perfumers</a></li>
+        <li><a href="#">Ingredients</a></li>
+        <li><a href="#">Store Locator</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 Razzal Fragrance · Dubai, UAE · All rights reserved</span>
+    <div class="payment-icons">
+      <div class="pay-icon">VISA</div>
+      <div class="pay-icon">MC</div>
+      <div class="pay-icon">AMEX</div>
+      <div class="pay-icon">PayPal</div>
+      <div class="pay-icon">Apple</div>
+    </div>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Gold Galaxy Sprinkles
+  (function() {
+    const container = document.getElementById('starsContainer');
+    if (!container) return;
+    const colors = ['var(--gold)', 'var(--gold-light)', '#FFFDF9', 'var(--sand)'];
+    for (let i = 0; i < 250; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      star.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        background: ${color};
+        box-shadow: 0 0 ${Math.random() * 5 + 2}px ${color};
+        top: ${Math.random() * 100}%;
+        left: ${Math.random() * 100}%;
+        animation: twinkle ${2 + Math.random() * 4}s infinite alternate;
+        animation-delay: -${Math.random() * 10}s;
+      `;
+      container.appendChild(star);
+    }
+  })();
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Cart
+  function toggleCart() {
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cartOverlay');
+    const open = drawer.classList.toggle('open');
+    overlay.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Quick add feedback
+  document.querySelectorAll('.quick-add').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const orig = btn.textContent;
+      btn.textContent = 'Added ✓';
+      btn.style.background = 'var(--gold)';
+      btn.style.color = 'var(--black)';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1800);
+    });
+  });
+
+  // Parallax on collection panels (subtle)
+  if (window.matchMedia('(min-width: 769px)').matches) {
+    const panels = document.querySelectorAll('.collection-image-inner');
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      panels.forEach(panel => {
+        const rect = panel.closest('.collection-image').getBoundingClientRect();
+        const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+        const offset = center * 0.04;
+        panel.style.transform = `translateY(${offset}px) scale(1)`;
+      });
+    }, { passive: true });
+  }
+
+  // ── THEME SWITCHER ──────────────────────────────────
+  (function() {
+    const root       = document.documentElement;
+    const toggle     = document.getElementById('theme-toggle');
+    const icon       = document.getElementById('theme-icon');
+    const label      = document.getElementById('theme-label');
+
+    let isLight = false;
+
+    function applyTheme(light) {
+      isLight = light;
+      if (light) {
+        root.setAttribute('data-theme', 'light');
+        icon.textContent  = '🌑';
+        label.textContent = 'Dark Mode';
+      } else {
+        root.removeAttribute('data-theme');
+        icon.textContent  = '☀️';
+        label.textContent = 'Rose Gold';
+      }
+      localStorage.setItem('razzal-theme', light ? 'light' : 'dark');
+    }
+
+    // Load saved preference
+    const saved = localStorage.getItem('razzal-theme');
+    if (saved === 'light') applyTheme(true);
+
+    // Toggle on click
+    toggle.addEventListener('click', () => applyTheme(!isLight));
+  })();
+
+</script>
+</body>
+</html>
